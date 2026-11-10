@@ -1,131 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07111f">
-<title>CD NEXA — Connect Beyond Limits</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#075e54">
+<title>CD NEXA</title>
 <style>
-:root{--bg:#07111f;--panel:#0d1b2b;--panel2:#102238;--line:#20364d;--text:#edf5ff;--muted:#8fa4ba;--accent:#22c7b8;--accent2:#5b8cff;--danger:#ff6b78;--shadow:0 18px 55px #0005}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer;color:inherit}.app{height:100dvh;display:grid;grid-template-columns:78px 360px 1fr;max-width:1600px;margin:auto;background:var(--panel);overflow:hidden}.rail{background:#081522;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:20px 10px;gap:14px}.brand{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#04131d;font-weight:900;font-size:18px;margin-bottom:22px}.navbtn{width:48px;height:48px;border:0;border-radius:15px;background:transparent;color:var(--muted);font-size:20px;position:relative}.navbtn:hover,.navbtn.active{background:#173047;color:var(--accent)}.navbtn.active:before{content:"";position:absolute;left:-15px;top:12px;height:24px;width:3px;background:var(--accent);border-radius:4px}.rail-spacer{flex:1}.sidebar{min-width:0;border-right:1px solid var(--line);display:flex;flex-direction:column;background:#0b1928}.sidehead{padding:22px 20px 14px}.side-title{display:flex;align-items:center;justify-content:space-between}.side-title h1{font-size:23px;letter-spacing:-.7px;margin:0}.side-title small{color:var(--accent);font-size:10px;letter-spacing:2px;font-weight:800}.iconbtn{border:1px solid var(--line);background:var(--panel2);border-radius:12px;width:38px;height:38px}.search{margin-top:17px;display:flex;gap:9px;background:#102238;border:1px solid var(--line);border-radius:13px;padding:0 12px;align-items:center}.search input{width:100%;padding:12px 0;background:transparent;border:0;outline:0;color:var(--text)}.tabs{display:flex;gap:7px;padding:0 16px 13px;overflow:auto}.tab{border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 12px;border-radius:20px;font-size:12px;white-space:nowrap}.tab.active{background:#123a40;border-color:#1c7773;color:#74f0df}.list{overflow:auto;flex:1}.section-label{padding:9px 20px;color:#668198;font-size:10px;letter-spacing:1.7px;font-weight:800}.chatrow{display:flex;gap:12px;padding:13px 17px;align-items:center;cursor:pointer;border-left:3px solid transparent}.chatrow:hover{background:#102238}.chatrow.selected{background:#142b40;border-left-color:var(--accent)}.avatar{width:48px;height:48px;flex:0 0 48px;border-radius:16px;background:linear-gradient(145deg,#24536a,#263e70);display:grid;place-items:center;font-weight:800;color:#d8f8ff;position:relative}.avatar.online:after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:#38d9a9;border:2px solid var(--panel);right:-1px;bottom:0}.chatmeta{min-width:0;flex:1}.chatline{display:flex;justify-content:space-between;gap:8px}.chatname{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.time,.preview{font-size:11px;color:var(--muted)}.preview{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:4px}.unread{background:var(--accent);color:#04201f;border-radius:20px;padding:2px 7px;font-size:10px;font-weight:900}.main{min-width:0;display:flex;flex-direction:column;background:radial-gradient(ellipse at 70% 0%,#12304a 0%,#0b1928 55%)}.welcome{margin:auto;text-align:center;max-width:430px;padding:28px}.logo-large{width:82px;height:82px;margin:0 auto 20px;border-radius:27px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#061724;font-size:32px;font-weight:950;box-shadow:0 12px 40px #22c7b833}.welcome h2{font-size:29px;margin:0 0 8px}.welcome p{color:var(--muted);margin:0}.chatview{height:100%;display:none;flex-direction:column}.chathead{height:76px;padding:12px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);background:#0b1a29dd}.chathead .avatar{width:43px;height:43px;flex-basis:43px;border-radius:14px}.person{flex:1;min-width:0}.person strong{display:block}.person small{color:var(--muted)}.head-actions{display:flex;gap:8px}.messages{flex:1;overflow:auto;padding:24px clamp(14px,5vw,65px);display:flex;flex-direction:column;gap:11px}.daylabel{text-align:center;color:var(--muted);font-size:11px;margin:8px 0 12px}.bubble{max-width:min(75%,520px);padding:11px 14px;border-radius:16px;background:#172b40;border:1px solid #25415a;align-self:flex-start;overflow-wrap:anywhere;box-shadow:0 5px 15px #0001}.bubble.mine{align-self:flex-end;background:linear-gradient(135deg,#0e625f,#15516a);border-color:#237c79;border-bottom-right-radius:5px}.bubble:not(.mine){border-bottom-left-radius:5px}.bubble time{display:block;text-align:right;color:#b1c8d6;font-size:10px;margin-top:5px}.composer-wrap{padding:14px 20px 18px;border-top:1px solid var(--line);background:#0b1a29}.composer{display:flex;align-items:flex-end;gap:9px;max-width:1000px;margin:auto}.composebox{flex:1;display:flex;align-items:flex-end;background:#14283c;border:1px solid #29445d;border-radius:17px;padding:6px 10px;gap:8px}.composebox textarea{resize:none;max-height:120px;min-height:40px;flex:1;background:transparent;border:0;outline:0;color:var(--text);padding:9px 2px}.send{width:44px;height:44px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--accent),#4d9ff4);color:#061724;font-size:18px;font-weight:900}.mutedbtn{color:var(--muted);background:transparent;border:0;font-size:18px;padding:9px}.empty-note{color:var(--muted);text-align:center;margin:auto}.mobile-back{display:none}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#17394b;border:1px solid #2c6571;padding:10px 16px;border-radius:12px;box-shadow:var(--shadow);display:none;z-index:5}.settings-panel{padding:30px;max-width:700px}.settings-panel h2{margin-top:0}.setting{padding:17px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px}.setting span{color:var(--muted);font-size:13px}.switch{accent-color:var(--accent)}@media(max-width:850px){.app{grid-template-columns:62px minmax(250px,320px) 1fr}.rail{padding:15px 6px}.navbtn{width:44px;height:44px}}@media(max-width:650px){.app{grid-template-columns:58px 1fr}.sidebar{grid-column:2;grid-row:1}.main{display:none;grid-column:2;grid-row:1}.app.chat-open .sidebar{display:none}.app.chat-open .main{display:flex}.rail{grid-column:1;grid-row:1}.chatview{height:100%}.chathead{padding:10px 12px}.mobile-back{display:inline-block}.head-actions .optional{display:none}.messages{padding:18px 12px}.bubble{max-width:88%}.composer-wrap{padding:10px}.sidehead{padding:18px 14px 12px}.chatrow{padding:12px}.tabs{padding-left:12px}.settings-panel{padding:20px}}
+:root{--green:#075e54;--green2:#128c7e;--light:#25d366;--bg:#f5f6f6;--paper:#fff;--ink:#172b24;--muted:#718078;--line:#e7ece9;--chatbg:#e9e4dc;--out:#d9fdd3}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{font-family:Roboto,"Arial",sans-serif;background:#d9e0dc;color:var(--ink);display:flex;justify-content:center}button,input,textarea{font:inherit}button{cursor:pointer}.phone{width:100%;max-width:520px;height:100dvh;background:var(--bg);position:relative;overflow:hidden;box-shadow:0 0 35px #0002;display:flex;flex-direction:column}.topbar{height:58px;flex:none;background:var(--green);color:#fff;display:flex;align-items:center;padding:0 16px;gap:14px}.brand{font-size:21px;font-weight:700;letter-spacing:.2px;flex:1}.tagline{font-size:9px;letter-spacing:1.2px;opacity:.8;display:block;margin-top:2px}.top-action{border:0;background:transparent;color:white;font-size:22px;width:34px;height:38px;border-radius:50%}.top-action:active{background:#ffffff22}.tabs{height:49px;background:var(--green);display:flex;align-items:stretch;color:#d2e8e4;flex:none}.tab{border:0;background:transparent;color:inherit;font-size:13px;font-weight:700;flex:1;position:relative;padding:0 5px}.tab.active{color:#fff}.tab.active:after{content:"";height:3px;position:absolute;bottom:0;left:0;right:0;background:#fff}.tab.camera{flex:0 0 48px;font-size:19px}.screen{display:none;flex:1;min-height:0;overflow:auto;background:var(--paper)}.screen.active{display:block}.chat-row{height:76px;display:flex;align-items:center;padding:0 14px;gap:13px;background:#fff;cursor:pointer}.chat-row:active{background:#edf2ef}.avatar{height:52px;width:52px;flex:none;border-radius:50%;background:#dce8e2;color:#236252;display:grid;place-items:center;font-weight:700;font-size:17px;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.chat-info{min-width:0;flex:1;height:100%;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid var(--line)}.chat-top,.chat-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.chat-name{font-size:16px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chat-time{font-size:11px;color:var(--muted);white-space:nowrap}.chat-preview{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:5px}.unread{min-width:19px;height:19px;border-radius:20px;background:#25b866;color:white;font-size:11px;display:grid;place-items:center;padding:0 5px}.fab{position:absolute;right:20px;bottom:24px;width:56px;height:56px;border:0;border-radius:18px;background:#20bd68;color:#fff;font-size:26px;box-shadow:0 4px 10px #0003}.fab:active{transform:scale(.96)}.empty{padding:45px 25px;text-align:center;color:var(--muted);font-size:14px}.section-title{padding:17px 16px 9px;color:var(--green2);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.status-row{display:flex;align-items:center;gap:13px;padding:12px 16px;background:white;min-height:75px;border-bottom:1px solid var(--line)}.status-ring{padding:3px;border:2px solid #20bd68;border-radius:50%}.status-ring .avatar{width:48px;height:48px}.settings-head{background:var(--green);color:white;padding:18px 17px 22px}.settings-head h2{font-size:20px;margin:0 0 5px}.settings-head p{font-size:12px;margin:0;opacity:.8}.profile-card{display:flex;align-items:center;gap:14px;padding:18px 16px;background:white;border-bottom:9px solid var(--bg)}.profile-card .avatar{width:58px;height:58px}.setting-row{display:flex;align-items:center;gap:17px;padding:14px 17px;min-height:68px;background:white;border-bottom:1px solid #f0f2f1;cursor:pointer}.setting-row:active{background:#f4f7f5}.setting-icon{width:26px;text-align:center;color:#607c70;font-size:20px}.setting-copy{flex:1;min-width:0}.setting-copy strong{font-size:15px;font-weight:500;display:block}.setting-copy small{font-size:12px;color:var(--muted);display:block;margin-top:4px}.chevron{color:#9aa7a0;font-size:20px}.switch{width:42px;height:24px;border-radius:20px;background:#c8d0cb;position:relative;border:0}.switch:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:white;top:3px;left:3px;transition:.18s}.switch.on{background:#20bd68}.switch.on:after{left:21px}.subscreen{display:none;position:absolute;inset:0;background:var(--bg);z-index:5;flex-direction:column}.subscreen.show{display:flex}.subhead{height:58px;background:var(--green);color:#fff;display:flex;align-items:center;padding:0 12px;gap:16px;flex:none}.subhead button{border:0;background:none;color:white;font-size:25px}.subhead strong{font-size:18px;font-weight:500}.subbody{overflow:auto;flex:1}.chat-screen{display:none;position:absolute;inset:0;z-index:4;background:var(--chatbg);flex-direction:column}.chat-screen.show{display:flex}.chat-header{height:60px;background:var(--green);color:white;display:flex;align-items:center;padding:0 9px;gap:9px;flex:none}.chat-header .avatar{width:40px;height:40px;font-size:14px;background:#dce8e2}.back{border:0;background:none;color:white;font-size:27px;width:30px}.chat-person{flex:1;min-width:0}.chat-person strong{font-size:16px;font-weight:500;display:block}.chat-person small{font-size:11px;opacity:.8}.chat-tools{display:flex;gap:12px}.chat-tools button{background:none;border:0;color:white;font-size:20px}.messages{flex:1;overflow:auto;padding:14px 10px;display:flex;flex-direction:column;gap:7px;background-color:var(--chatbg);background-image:radial-gradient(#c7c0b5 0.65px,transparent .65px);background-size:13px 13px}.bubble{max-width:83%;padding:8px 9px 5px;border-radius:8px;background:#fff;align-self:flex-start;box-shadow:0 1px 1px #0001;font-size:14px;line-height:1.35;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;background:var(--out)}.bubble small{display:block;text-align:right;color:#83918a;font-size:10px;margin:4px 0 0 18px}.composer{display:flex;align-items:flex-end;gap:7px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#f0f2f0;flex:none}.compose-field{display:flex;align-items:flex-end;gap:8px;background:white;border-radius:24px;flex:1;padding:5px 11px;min-height:43px}.compose-field button{border:0;background:none;color:#718078;font-size:20px;padding:4px}.compose-field textarea{border:0;outline:0;resize:none;flex:1;max-height:100px;min-height:29px;padding:7px 0;font-size:15px}.send-btn{height:44px;width:44px;border:0;border-radius:50%;background:#128c7e;color:white;font-size:19px}.menu{display:none;position:absolute;right:8px;top:7px;z-index:9;background:white;box-shadow:0 5px 22px #0003;border-radius:3px;min-width:190px;padding:6px 0}.menu.show{display:block}.menu button{display:block;width:100%;padding:13px 16px;border:0;background:white;text-align:left;font-size:14px;color:#26352e}.menu button:active{background:#edf2ef}.shade{display:none;position:absolute;inset:0;background:#0006;z-index:10;align-items:flex-end}.shade.show{display:flex}.dialog{background:white;width:100%;padding:20px 18px 28px;border-radius:18px 18px 0 0}.dialog h3{margin:0 0 16px}.dialog input{width:100%;border:0;border-bottom:2px solid var(--green2);padding:12px 2px;outline:0;font-size:16px}.dialog-actions{display:flex;justify-content:flex-end;gap:18px;margin-top:22px}.dialog-actions button{border:0;background:none;color:var(--green2);font-weight:700;padding:8px}.toast{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);background:#303b35;color:white;padding:10px 15px;border-radius:22px;font-size:13px;z-index:20;display:none;white-space:nowrap}
+@media(min-width:700px){body{padding:18px 0}.phone{height:calc(100dvh - 36px);border-radius:14px}.chat-screen,.subscreen{border-radius:14px;overflow:hidden}}
 </style>
 </head>
 <body>
-<div class="app" id="app">
-  <aside class="rail">
-    <div class="brand">N</div>
-    <button class="navbtn active" title="Chats" data-view="chats">▤</button>
-    <button class="navbtn" title="Status" data-view="status">◉</button>
-    <button class="navbtn" title="Communities" data-view="communities">♧</button>
-    <button class="navbtn" title="Calls" data-view="calls">⌕</button>
-    <div class="rail-spacer"></div>
-    <button class="navbtn" title="Settings" data-view="settings">⚙</button>
-    <button class="navbtn" title="Profile" data-view="profile">●</button>
-  </aside>
-  <aside class="sidebar">
-    <header class="sidehead">
-      <div class="side-title"><div><small>CONNECT BEYOND LIMITS</small><h1>CD NEXA</h1></div><button class="iconbtn" id="newChat" title="New chat">＋</button></div>
-      <label class="search">⌕ <input id="search" placeholder="Search conversations"></label>
-    </header>
-    <div class="tabs" id="filters">
-      <button class="tab active" data-filter="all">All</button><button class="tab" data-filter="unread">Unread</button><button class="tab" data-filter="groups">Groups</button>
+<div class="phone" id="phone">
+  <header class="topbar"><div class="brand">CD NEXA<span class="tagline">CONNECT BEYOND LIMITS</span></div><button class="top-action" id="searchBtn" aria-label="Search">⌕</button><button class="top-action" id="menuBtn" aria-label="More options">⋮</button></header>
+  <nav class="tabs" id="tabs"><button class="tab camera" data-tab="camera">▣</button><button class="tab active" data-tab="chats">CHATS</button><button class="tab" data-tab="groups">GROUPS</button><button class="tab" data-tab="status">STATUS</button><button class="tab" data-tab="calls">CALLS</button></nav>
+  <main class="screen active" id="chatsScreen"></main>
+  <main class="screen" id="groupsScreen"></main>
+  <main class="screen" id="statusScreen"></main>
+  <main class="screen" id="callsScreen"></main>
+  <main class="screen" id="cameraScreen"><div class="empty">Camera sharing is not connected in this frontend prototype.</div></main>
+  <button class="fab" id="fab" aria-label="New chat">✉</button>
+  <div class="menu" id="menu">
+    <button data-action="newgroup">New group</button><button data-action="broadcast">New broadcast</button><button data-action="starred">Starred messages</button><button data-action="settings">Settings</button>
+  </div>
+  <section class="subscreen" id="settingsScreen">
+    <header class="subhead"><button data-close="settingsScreen">‹</button><strong>Settings</strong></header>
+    <div class="subbody">
+      <div class="profile-card" data-open="profile"><div class="avatar">CN</div><div><strong>CD NEXA User</strong><small style="display:block;color:#718078;margin-top:5px">Hey there! I am using CD NEXA.</small></div><span class="chevron">›</span></div>
+      <div class="section-title">Account</div>
+      <div class="setting-row" data-open="account"><div class="setting-icon">♙</div><div class="setting-copy"><strong>Account</strong><small>Security notifications, change number</small></div><span class="chevron">›</span></div>
+      <div class="setting-row" data-open="privacy"><div class="setting-icon">▣</div><div class="setting-copy"><strong>Privacy</strong><small>Block contacts, disappearing messages</small></div><span class="chevron">›</span></div>
+      <div class="setting-row" data-open="chatsSettings"><div class="setting-icon">▤</div><div class="setting-copy"><strong>Chats</strong><small>Theme, wallpaper, chat history</small></div><span class="chevron">›</span></div>
+      <div class="setting-row" data-open="notifications"><div class="setting-icon">♢</div><div class="setting-copy"><strong>Notifications</strong><small>Message, group and call tones</small></div><span class="chevron">›</span></div>
+      <div class="setting-row" data-open="storage"><div class="setting-icon">▦</div><div class="setting-copy"><strong>Storage and data</strong><small>Network usage, media auto-download</small></div><span class="chevron">›</span></div>
+      <div class="section-title">More</div>
+      <div class="setting-row" data-open="help"><div class="setting-icon">?</div><div class="setting-copy"><strong>Help</strong><small>Help centre, contact us, app info</small></div><span class="chevron">›</span></div>
+      <div class="setting-row" data-open="invite"><div class="setting-icon">♧</div><div class="setting-copy"><strong>Invite a friend</strong><small>Share CD NEXA with friends</small></div><span class="chevron">›</span></div>
     </div>
-    <div class="list" id="chatList"><div class="section-label">MESSAGES</div></div>
-  </aside>
-  <main class="main">
-    <section class="welcome" id="welcome"><div class="logo-large">N</div><h2>Connect Beyond Limits.</h2><p>Your conversations, brought together in one calm, premium space. Choose a chat to begin.</p></section>
-    <section class="chatview" id="chatView">
-      <header class="chathead">
-        <button class="mutedbtn mobile-back" id="back">‹</button>
-        <div class="avatar" id="headAvatar">A</div>
-        <div class="person"><strong id="headName">Contact</strong><small id="headStatus">CD NEXA conversation</small></div>
-        <div class="head-actions"><button class="iconbtn optional" title="Voice call" id="voiceCall">☎</button><button class="iconbtn optional" title="Video call" id="videoCall">▣</button><button class="iconbtn" title="More options" id="more">⋯</button></div>
-      </header>
-      <div class="messages" id="messages"></div>
-      <div class="composer-wrap"><form class="composer" id="messageForm">
-        <button class="mutedbtn" type="button" id="attach" title="Attachment">＋</button>
-        <div class="composebox"><button class="mutedbtn" type="button" id="emoji" title="Emoji">☺</button><textarea id="messageInput" rows="1" placeholder="Write a message…"></textarea><button class="mutedbtn" type="button" id="voice" title="Voice note">♩</button></div>
-        <button class="send" type="submit" title="Send message">➤</button>
-      </form></div>
-    </section>
-    <section class="settings-panel" id="otherView" hidden></section>
-  </main>
+  </section>
+  <section class="subscreen" id="detailScreen"><header class="subhead"><button id="detailBack">‹</button><strong id="detailTitle">Account</strong></header><div class="subbody" id="detailBody"></div></section>
+  <section class="chat-screen" id="chatScreen">
+    <header class="chat-header"><button class="back" id="chatBack">‹</button><div class="avatar" id="chatAvatar">A</div><div class="chat-person"><strong id="chatTitle">Contact</strong><small id="chatStatus">tap for contact info</small></div><div class="chat-tools"><button id="callBtn" title="Voice call">☎</button><button id="videoBtn" title="Video call">▣</button><button id="chatMenuBtn">⋮</button></div></header>
+    <div class="messages" id="messages"></div>
+    <form class="composer" id="sendForm"><div class="compose-field"><button type="button" id="emojiBtn">☺</button><textarea id="messageInput" rows="1" placeholder="Message"></textarea><button type="button" id="attachBtn">📎</button></div><button class="send-btn" type="submit">➤</button></form>
+  </section>
+  <div class="shade" id="dialogShade"><div class="dialog"><h3 id="dialogTitle">New chat</h3><input id="dialogInput" placeholder="Enter name"><div class="dialog-actions"><button id="dialogCancel">CANCEL</button><button id="dialogOk">CREATE</button></div></div></div>
+  <input type="file" id="fileInput" hidden>
+  <div class="toast" id="toast"></div>
 </div>
-<div class="toast" id="toast"></div>
-<input type="file" id="fileInput" hidden>
 <script>
-(() => {
-  "use strict";
-  const $ = id => document.getElementById(id);
-  const KEY = "cdnexa_demo_v1";
-  const starter = [
-    {id:"a",name:"Alex Morgan",group:false,online:true,unread:2,messages:[{text:"Hey! Welcome to CD NEXA.",mine:false,time:"10:24"},{text:"This interface is looking clean.",mine:false,time:"10:25"}]},
-    {id:"b",name:"NEXA Team",group:true,online:false,unread:0,messages:[{text:"Project group created. More updates soon.",mine:false,time:"Yesterday"}]},
-    {id:"c",name:"Sarah",group:false,online:false,unread:0,messages:[{text:"Talk to you later 👋",mine:false,time:"Yesterday"}]},
-    {id:"d",name:"David",group:false,online:true,unread:1,messages:[{text:"Are we still meeting today?",mine:false,time:"Mon"}]}
-  ];
-  let data;
-  try { data = JSON.parse(localStorage.getItem(KEY)) || starter; } catch { data = starter; }
-  if (!Array.isArray(data)) data = starter;
-  let activeId = null, filter = "all", currentView = "chats";
-  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(data)); } catch {} };
-  const initials = name => (name || "?").trim().split(/\s+/).slice(0,2).map(x=>x[0] || "").join("").toUpperCase() || "?";
-  const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-  const toast = msg => { $("toast").textContent=msg; $("toast").style.display="block"; clearTimeout(toast.t); toast.t=setTimeout(()=>$("toast").style.display="none",2300); };
-  const activeChat = () => data.find(c=>c.id===activeId);
-  function renderList(){
-    const q=$("search").value.toLowerCase().trim();
-    const rows=data.filter(c=>(filter==="all" || (filter==="unread" && c.unread>0) || (filter==="groups" && c.group)) && (c.name.toLowerCase().includes(q) || c.messages.some(m=>m.text.toLowerCase().includes(q))));
-    $("chatList").innerHTML='<div class="section-label">MESSAGES</div>'+ (rows.length?rows.map(c=>{
-      const last=c.messages[c.messages.length-1];
-      return `<div class="chatrow ${c.id===activeId?"selected":""}" data-id="${esc(c.id)}"><div class="avatar ${c.online?"online":""}">${esc(initials(c.name))}</div><div class="chatmeta"><div class="chatline"><span class="chatname">${esc(c.name)}</span><span class="time">${esc(last?.time||"")}</span></div><div class="chatline"><span class="preview">${esc(last?.text||"No messages yet")}</span>${c.unread?`<span class="unread">${c.unread}</span>`:""}</div></div></div>`;
-    }).join(""):'<div class="empty-note">No conversations found.</div>');
-  }
-  function openChat(id){
-    const c=data.find(x=>x.id===id); if(!c)return;
-    activeId=id;c.unread=0;save();$("welcome").style.display="none";$("otherView").hidden=true;$("chatView").style.display="flex";$("app").classList.add("chat-open");
-    $("headAvatar").textContent=initials(c.name);$("headName").textContent=c.name;$("headStatus").textContent=c.group?"Group conversation":(c.online?"● Online":"CD NEXA contact");
-    renderMessages();renderList();currentView="chats";
-  }
-  function renderMessages(){
-    const c=activeChat();if(!c)return;
-    $("messages").innerHTML='<div class="daylabel">TODAY · DEMO CONVERSATION</div>'+c.messages.map(m=>`<div class="bubble ${m.mine?"mine":""}">${esc(m.text)}<time>${esc(m.time||"")}${m.mine?" · ✓":""}</time></div>`).join("");
-    $("messages").scrollTop=$("messages").scrollHeight;
-  }
-  function sendMessage(text){
-    const c=activeChat();if(!c || !text.trim())return;
-    const now=new Date();c.messages.push({text:text.trim(),mine:true,time:now.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})});save();renderMessages();renderList();
-  }
-  function showView(view){
-    currentView=view;$("app").classList.remove("chat-open");$("chatView").style.display="none";$("welcome").style.display="none";$("otherView").hidden=false;
-    document.querySelectorAll(".navbtn[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===view));
-    const content={
-      status:["Status","Status updates are a planned interface area. Live status sharing is not connected."],
-      communities:["Communities","Community discovery and group management are planned. No live community service is connected."],
-      calls:["Calls","Call history and voice/video calling are not connected in this interface prototype."],
-      settings:["Settings","Your preferences are stored only in this browser on this device."],
-      profile:["Profile","CD NEXA profile controls are a visual prototype. Account services are not connected."]
-    }[view] || ["CD NEXA","Connect Beyond Limits."];
-    $("otherView").innerHTML=`<h2>${content[0]}</h2><p style="color:var(--muted)">${content[1]}</p><div class="setting"><div><b>Interface status</b><br><span>Frontend prototype · demo data</span></div><span>LOCAL</span></div><div class="setting"><div><b>Privacy and security</b><br><span>Server-side privacy enforcement is not implemented yet.</span></div><span>NOT CONNECTED</span></div><button class="tab" id="backToChats">← Back to chats</button>`;
-    $("backToChats").onclick=()=>{document.querySelector('[data-view="chats"]').click();};
-  }
-  $("chatList").addEventListener("click",e=>{const row=e.target.closest(".chatrow");if(row)openChat(row.dataset.id);});
-  $("search").addEventListener("input",renderList);
-  $("filters").addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(!b)return;filter=b.dataset.filter;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));renderList();});
-  document.querySelectorAll(".navbtn[data-view]").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.view==="chats"){ $("app").classList.remove("chat-open");$("otherView").hidden=true;$("chatView").style.display="none";$("welcome").style.display="block";document.querySelectorAll(".navbtn").forEach(x=>x.classList.toggle("active",x===b));}else showView(b.dataset.view);}));
-  $("messageForm").addEventListener("submit",e=>{e.preventDefault();sendMessage($("messageInput").value);$("messageInput").value="";$("messageInput").style.height="40px";});
-  $("messageInput").addEventListener("input",e=>{e.target.style.height="40px";e.target.style.height=Math.min(e.target.scrollHeight,120)+"px";});
-  $("back").onclick=()=>{$("app").classList.remove("chat-open");};
-  $("newChat").onclick=()=>{const name=prompt("Enter the contact or group name:");if(!name?.trim())return;const c={id:"n"+Date.now(),name:name.trim(),group:false,online:false,unread:0,messages:[]};data.unshift(c);save();renderList();openChat(c.id);};
-  $("attach").onclick=()=>$("fileInput").click();
-  $("fileInput").onchange=e=>{const f=e.target.files[0];if(f){toast("Selected: "+f.name+" · Upload is not connected.");e.target.value="";}};
-  $("emoji").onclick=()=>{$("messageInput").value+="😊";$("messageInput").focus();};
-  $("voice").onclick=()=>toast("Voice-note recording is not connected yet.");
-  $("voiceCall").onclick=()=>toast("Voice calling is not connected yet.");
-  $("videoCall").onclick=()=>toast("Video calling is not connected yet.");
-  $("more").onclick=()=>toast("More chat options will be added during interface refinement.");
-  renderList();
+(()=>{'use strict';
+const $=id=>document.getElementById(id),KEY='cdnexa_mobile_demo_v2';
+const seed=[
+{id:'1',name:'Alex Morgan',group:false,avatar:'AM',messages:[{text:'Hey! Welcome to CD NEXA 👋',mine:false,time:'10:24'},{text:'Connect Beyond Limits.',mine:true,time:'10:25'}],unread:2},
+{id:'2',name:'Family Group',group:true,avatar:'FG',messages:[{text:'Good morning everyone ❤️',mine:false,time:'Yesterday'}],unread:0},
+{id:'3',name:'Sarah',group:false,avatar:'S',messages:[{text:'Talk to you later!',mine:false,time:'Yesterday'}],unread:0},
+{id:'4',name:'David',group:false,avatar:'D',messages:[{text:'Are we still meeting today?',mine:false,time:'Monday'}],unread:1}
+];
+let chats;try{chats=JSON.parse(localStorage.getItem(KEY))||seed}catch{chats=seed}
+if(!Array.isArray(chats))chats=seed;
+let active=null,tab='chats',dialogMode='chat';
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(chats))}catch{}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const initials=n=>(n||'?').trim().split(/\s+/).slice(0,2).map(x=>x[0]||'').join('').toUpperCase()||'?';
+function toast(t){$('toast').textContent=t;$('toast').style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').style.display='none',2200)}
+function showTab(name){tab=name;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===name+'Screen'));$('fab').style.display=['chats','groups'].includes(name)?'grid':'none';$('menu').classList.remove('show');renderLists()}
+function renderLists(){
+const list=tab==='groups'?chats.filter(c=>c.group):chats.filter(c=>!c.group);
+$('chatsScreen').innerHTML=chats.filter(c=>!c.group).map(rowHTML).join('')||'<div class="empty">No chats yet. Tap the green button to start a conversation.</div>';
+$('groupsScreen').innerHTML=chats.filter(c=>c.group).map(rowHTML).join('')||'<div class="empty">No groups yet. Create a group to get started.</div>';
+$('statusScreen').innerHTML='<div class="section-title">Recent updates</div><div class="status-row"><div class="status-ring"><div class="avatar">CN</div></div><div><strong>My status</strong><div class="chat-preview">Tap to add a status update</div></div></div><div class="section-title">Viewed updates</div><div class="empty">Status sharing will be available when the service is connected.</div>';
+$('callsScreen').innerHTML='<div class="empty">☎<br><br>Your calls will appear here when voice and video calling are connected.</div>';
+}
+function rowHTML(c){let m=c.messages[c.messages.length-1];return `<div class="chat-row" data-chat="${esc(c.id)}"><div class="avatar">${esc(c.avatar||initials(c.name))}</div><div class="chat-info"><div class="chat-top"><span class="chat-name">${esc(c.name)}</span><span class="chat-time">${esc(m?.time||'')}</span></div><div class="chat-bottom"><span class="chat-preview">${m?(m.mine?'✓ ':'')+esc(m.text):'Tap to start chatting'}</span>${c.unread?`<span class="unread">${c.unread}</span>`:''}</div></div></div>`}
+function openChat(id){active=chats.find(c=>c.id===id);if(!active)return;active.unread=0;save();$('chatTitle').textContent=active.name;$('chatAvatar').textContent=active.avatar||initials(active.name);$('chatStatus').textContent=active.group?'Group info':'tap for contact info';$('chatScreen').classList.add('show');renderMessages();renderLists()}
+function renderMessages(){if(!active)return;$('messages').innerHTML='<div style="text-align:center;color:#66756d;font-size:11px;margin:5px 0 12px">TODAY</div>'+active.messages.map(m=>`<div class="bubble ${m.mine?'mine':''}">${esc(m.text)}<small>${esc(m.time)}${m.mine?' ✓':''}</small></div>`).join('');$('messages').scrollTop=$('messages').scrollHeight}
+function send(){let t=$('messageInput').value.trim();if(!t||!active)return;let d=new Date();active.messages.push({text:t,mine:true,time:d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})});$('messageInput').value='';$('messageInput').style.height='29px';save();renderMessages();renderLists()}
+function openSettings(){ $('menu').classList.remove('show');$('settingsScreen').classList.add('show')}
+function openDetail(key){const names={profile:'Profile',account:'Account',privacy:'Privacy',chatsSettings:'Chats',notifications:'Notifications',storage:'Storage and data',help:'Help',invite:'Invite a friend'};$('detailTitle').textContent=names[key]||'Settings';let rows={
+profile:[['Profile photo','Change your profile picture'],['Name','CD NEXA User'],['About','Hey there! I am using CD NEXA.']],
+account:[['Security notifications','Get notified about security changes'],['Two-step verification','Add extra account security'],['Change number','Change the phone number on your account']],
+privacy:[['Last seen','Choose who can see your last seen'],['Profile photo','Choose who can see your photo'],['About','Choose who can see your about'],['Read receipts','Turn read receipts on or off'],['Disappearing messages','Default message timer']],
+chatsSettings:[['Theme','Choose light or dark appearance'],['Wallpaper','Set your chat background'],['Enter is send','Send messages with enter'],['Media visibility','Show newly downloaded media']],
+notifications:[['Conversation tones','Play sounds for incoming and outgoing messages'],['Message notifications','Set message tone and vibration'],['Group notifications','Set group message alerts'],['Call notifications','Set call ringtone and vibration']],
+storage:[['Network usage','Review data usage'],['Media auto-download','Choose when media downloads'],['Storage management','Manage files and storage']],
+help:[['Help centre','Get help using CD NEXA'],['Contact us','Support options'],['App info','CD NEXA · Connect Beyond Limits']],
+invite:[['Share CD NEXA','Invite friends when sharing is connected']]
+};
+let arr=rows[key]||[];$('detailBody').innerHTML=arr.map((r,i)=>`<div class="setting-row"><div class="setting-copy"><strong>${esc(r[0])}</strong><small>${esc(r[1])}</small></div>${['privacy','chatsSettings','notifications'].includes(key)&&i===3?'<button class="switch on" aria-label="Toggle setting"></button>':'<span class="chevron">›</span>'}</div>`).join('')+'<div class="empty" style="padding-top:25px">These are interface settings. Account, privacy and notification enforcement requires backend integration.</div>';$('detailScreen').classList.add('show')}
+function showDialog(mode){dialogMode=mode;$('dialogTitle').textContent=mode==='group'?'New group':'New chat';$('dialogInput').placeholder=mode==='group'?'Group subject':'Contact name';$('dialogInput').value='';$('dialogShade').classList.add('show');setTimeout(()=>$('dialogInput').focus(),100)}
+function create(){let name=$('dialogInput').value.trim();if(!name){toast('Please enter a name');return}let c={id:'c'+Date.now(),name,group:dialogMode==='group',avatar:initials(name),messages:[],unread:0};chats.unshift(c);save();$('dialogShade').classList.remove('show');showTab(c.group?'groups':'chats');openChat(c.id)}
+$('tabs').addEventListener('click',e=>{let b=e.target.closest('[data-tab]');if(b)showTab(b.dataset.tab)});
+$('chatsScreen').addEventListener('click',e=>{let r=e.target.closest('[data-chat]');if(r)openChat(r.dataset.chat)});
+$('groupsScreen').addEventListener('click',e=>{let r=e.target.closest('[data-chat]');if(r)openChat(r.dataset.chat)});
+$('fab').onclick=()=>showDialog(tab==='groups'?'group':'chat');
+$('menuBtn').onclick=()=>$('menu').classList.toggle('show');
+$('menu').addEventListener('click',e=>{let a=e.target.dataset.action;if(a==='settings')openSettings();else if(a==='newgroup')showDialog('group');else if(a)toast(a==='broadcast'?'Broadcast lists will be added later.':'No starred messages yet.')});
+$('searchBtn').onclick=()=>{let q=prompt('Search chats');if(q===null)return;let found=chats.find(c=>c.name.toLowerCase().includes(q.toLowerCase()));if(found)openChat(found.id);else toast('No matching chat found')};
+$('settingsScreen').addEventListener('click',e=>{let row=e.target.closest('[data-open]');if(row)openDetail(row.dataset.open)});
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).classList.remove('show'));
+$('detailBack').onclick=()=>$('detailScreen').classList.remove('show');
+$('chatBack').onclick=()=>$('chatScreen').classList.remove('show');
+$('sendForm').onsubmit=e=>{e.preventDefault();send()};
+$('messageInput').addEventListener('input',e=>{e.target.style.height='29px';e.target.style.height=Math.min(e.target.scrollHeight,100)+'px'});
+$('emojiBtn').onclick=()=>{$('messageInput').value+='😊';$('messageInput').focus()};
+$('attachBtn').onclick=()=>$('fileInput').click();
+$('fileInput').onchange=e=>{if(e.target.files[0])toast('Attachment selected. Upload service is not connected.');e.target.value=''};
+$('callBtn').onclick=()=>toast('Voice calling is not connected yet');
+$('videoBtn').onclick=()=>toast('Video calling is not connected yet');
+$('chatMenuBtn').onclick=()=>toast('Contact options will be added with account integration');
+$('dialogCancel').onclick=()=>$('dialogShade').classList.remove('show');
+$('dialogOk').onclick=create;
+$('dialogShade').addEventListener('click',e=>{if(e.target===$('dialogShade'))$('dialogShade').classList.remove('show')});
+showTab('chats');
 })();
 </script>
+</div>
 </body>
-                                  </html>
+                                                                                                                                                                                                  </html>
