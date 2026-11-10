@@ -4,687 +4,376 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#071321">
-<title>CD NEXA | Connect Beyond Limits</title>
+<meta name="theme-color" content="#101b2b">
+<title>CD NEXA — Connect Beyond Limits</title>
 <style>
-:root {
-  --bg:#071321;
-  --panel:#0e1d2e;
-  --panel2:#14273b;
-  --text:#f1f7fc;
-  --muted:#91a6b9;
-  --accent:#22d6bd;
-  --accent2:#168bc9;
-  --border:rgba(255,255,255,.09);
-  --mine:#075e54;
-  --other:#1b3045;
+:root{
+  --bg:#0b1421;--panel:#111f30;--panel2:#17283b;--panel3:#20354b;
+  --text:#f3f7fb;--muted:#9aabba;--line:#26394d;
+  --accent:#22d3b5;--accent2:#16a890;--bubble:#1c3447;
+  --mine:#075f55;--danger:#ff7474;--shadow:0 12px 35px #0004;
+}
+body.light{
+  --bg:#edf2f5;--panel:#fff;--panel2:#f5f8fa;--panel3:#e7eef2;
+  --text:#182735;--muted:#687b89;--line:#dce5ea;
+  --accent:#079e86;--accent2:#087e70;--bubble:#e8eef2;
+  --mine:#c8f2e8;--shadow:0 12px 35px #24374612;
 }
 *{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
-}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
-.app{height:100dvh;max-width:1500px;margin:auto;display:flex;overflow:hidden}
-.sidebar{
-  width:350px;min-width:280px;background:var(--panel);
-  border-right:1px solid var(--border);display:flex;flex-direction:column;
-}
-.brand{padding:21px;display:flex;align-items:center;gap:12px}
-.logo{
-  width:44px;height:44px;border-radius:14px;
-  display:grid;place-items:center;color:#061520;font-size:22px;font-weight:900;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-}
-.brand h1{font-size:20px;letter-spacing:2px;margin:0}
-.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px;margin-top:5px}
-.profile{
-  padding:13px 17px;display:flex;align-items:center;gap:12px;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-}
-.avatar{
-  width:44px;height:44px;flex-shrink:0;border-radius:50%;
-  display:grid;place-items:center;font-weight:bold;
-  background:linear-gradient(145deg,#168f9d,#354f9e);
-}
-.profile-info{flex:1;min-width:0}
-.profile-info strong{font-size:13px;display:block}
-.profile-info small{color:var(--muted);font-size:11px}
-.iconbtn{
-  border:0;background:transparent;color:var(--muted);
-  font-size:19px;padding:8px;
-}
-.tabs{display:flex;gap:7px;padding:13px}
-.tab{
-  flex:1;padding:10px 5px;border-radius:10px;
-  color:var(--muted);background:transparent;border:1px solid var(--border);
-  font-size:12px;
-}
-.tab.active{color:var(--accent);background:rgba(34,214,189,.1);border-color:var(--accent)}
-.search{
-  margin:0 14px 12px;padding:0 12px;display:flex;align-items:center;
-  background:var(--panel2);border-radius:10px;border:1px solid var(--border);
-}
-.search input{width:100%;padding:12px 8px;background:transparent;border:0;outline:0;color:var(--text)}
-.section-label{padding:8px 18px;color:var(--muted);font-size:10px;letter-spacing:1.5px}
-.chat-list{overflow-y:auto;flex:1}
-.chat-item{
-  padding:13px 16px;display:flex;align-items:center;gap:12px;
-  cursor:pointer;border-left:3px solid transparent;
-}
-.chat-item:hover,.chat-item.active{background:var(--panel2)}
-.chat-item.active{border-left-color:var(--accent)}
-.chat-details{flex:1;min-width:0}
-.chat-top,.chat-bottom{display:flex;justify-content:space-between;gap:8px}
-.chat-top strong{font-size:13px}
-.chat-top time,.chat-bottom{font-size:11px;color:var(--muted)}
-.chat-bottom span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.unread{background:var(--accent);color:#061520;border-radius:20px;padding:3px 7px}
-.sidebar-footer{
-  padding:13px;text-align:center;border-top:1px solid var(--border);
-  color:var(--muted);font-size:10px;line-height:1.6;
-}
-.main{
-  flex:1;min-width:0;display:flex;flex-direction:column;
-  background:radial-gradient(ellipse at 80% 0%,rgba(22,139,201,.13),transparent 45%),var(--bg);
-}
-.topbar{
-  min-height:70px;padding:12px 20px;display:flex;align-items:center;gap:12px;
-  border-bottom:1px solid var(--border);background:var(--panel);
-}
-.top-info{flex:1;min-width:0}
-.top-info strong{display:block;font-size:14px}
-.top-info small{color:var(--muted);font-size:11px}
-.top-actions{display:flex;gap:3px}
-.notice{
-  text-align:center;padding:7px;font-size:10px;
-  color:#e6bd75;background:rgba(230,189,117,.07);
-}
-.chat-area{
-  flex:1;overflow-y:auto;padding:22px clamp(12px,5vw,65px);
-  display:flex;flex-direction:column;gap:12px;
-}
-.date-label{text-align:center;color:var(--muted);font-size:10px;margin:8px}
-.message{
-  max-width:min(78%,520px);padding:11px 14px;border-radius:14px;
-  font-size:13px;line-height:1.55;overflow-wrap:anywhere;
-}
-.message.them{align-self:flex-start;background:var(--other);border-top-left-radius:4px}
-.message.mine{align-self:flex-end;background:var(--mine);border-top-right-radius:4px}
-.message small{display:block;text-align:right;color:rgba(255,255,255,.6);font-size:9px;margin-top:5px}
-.empty{margin:auto;text-align:center;color:var(--muted);max-width:330px}
-.empty .big{font-size:43px;margin-bottom:12px}
-.composer{
-  padding:12px 17px;display:flex;align-items:flex-end;gap:9px;
-  background:var(--panel);border-top:1px solid var(--border);
-}
-.composer textarea{
-  flex:1;resize:none;max-height:110px;min-height:44px;
-  background:var(--panel2);border:1px solid var(--border);
-  border-radius:13px;padding:13px;color:var(--text);outline:0;
-}
-.send{
-  width:45px;height:45px;border:0;border-radius:13px;
-  background:var(--accent);color:#061520;font-weight:bold;font-size:19px;
-}
-.panel-screen{padding:24px;overflow-y:auto}
-.panel-screen h2{font-size:22px;margin:0 0 8px}
-.panel-screen>p{color:var(--muted);font-size:13px;line-height:1.6}
-.feature-card{
-  padding:17px;margin:12px 0;background:var(--panel);
-  border:1px solid var(--border);border-radius:14px;
-}
-.feature-card h3{font-size:14px;margin:0 0 9px}
-.feature-card p{font-size:12px;color:var(--muted);line-height:1.6}
-.action{
-  padding:10px 13px;margin:4px 5px 4px 0;border-radius:9px;
-  background:var(--panel2);color:var(--text);border:1px solid var(--border);
-  font-size:12px;
-}
-.action.primary{background:var(--accent);color:#061520;border:0;font-weight:bold}
-.field{
-  display:block;width:100%;padding:12px;margin:8px 0 12px;
-  background:var(--panel2);border:1px solid var(--border);
-  color:var(--text);border-radius:10px;outline:0;
-}
-.status-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.app{height:100dvh;max-width:1500px;margin:auto;display:flex;background:var(--panel);overflow:hidden}
+.sidebar{width:365px;min-width:300px;border-right:1px solid var(--line);display:flex;flex-direction:column;background:var(--panel)}
+.side-head{padding:20px 18px 14px}
+.brand-row{display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:24px;font-weight:850;letter-spacing:1px}
+.brand span{color:var(--accent)}
+.tagline{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.5px}
+.icon-btn{border:0;background:var(--panel2);color:var(--text);width:40px;height:40px;border-radius:13px;font-size:18px}
+.search-wrap{margin-top:18px;position:relative}
+.search-wrap input{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:13px 14px 13px 40px;color:var(--text);outline:none}
+.search-wrap:before{content:"⌕";position:absolute;left:14px;top:7px;font-size:23px;color:var(--muted)}
+.section-row{display:flex;align-items:center;justify-content:space-between;padding:15px 18px 9px}
+.section-label{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1.2px}
+.add-btn{border:0;background:var(--accent);color:#06251f;font-weight:800;border-radius:10px;padding:9px 12px;font-size:12px}
+.nav{display:flex;gap:5px;padding:0 12px 12px}
+.nav button{flex:1;border:0;background:transparent;color:var(--muted);border-radius:11px;padding:10px 4px;font-size:12px;font-weight:700}
+.nav button.active{background:var(--panel3);color:var(--accent)}
+.chat-list{overflow-y:auto;flex:1;padding:0 9px 12px}
+.chat-item{width:100%;display:flex;align-items:center;gap:12px;padding:12px 10px;border:0;background:transparent;color:var(--text);text-align:left;border-radius:13px}
+.chat-item:hover,.chat-item.selected{background:var(--panel2)}
+.avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-weight:800;color:white;background:linear-gradient(140deg,#168e89,#315c91);font-size:15px}
+.avatar.purple{background:linear-gradient(140deg,#7752aa,#b45f91)}
+.avatar.orange{background:linear-gradient(140deg,#bd7841,#d7a34d)}
+.avatar.blue{background:linear-gradient(140deg,#3568a4,#55a4b5)}
+.avatar.green{background:linear-gradient(140deg,#28846a,#6da86b)}
+.chat-meta{min-width:0;flex:1}
+.chat-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.chat-name{font-weight:750;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-time{font-size:10px;color:var(--muted);white-space:nowrap}
+.chat-preview{font-size:12px;color:var(--muted);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.main{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--bg)}
+.main-head{height:76px;display:flex;align-items:center;gap:12px;padding:12px 22px;background:var(--panel);border-bottom:1px solid var(--line)}
+.main-head .avatar{width:43px;height:43px}
+.head-copy{flex:1;min-width:0}
+.head-title{font-weight:800;font-size:15px}
+.head-sub{font-size:11px;color:var(--muted);margin-top:4px}
+.head-actions{display:flex;gap:8px}
+.mobile-back{display:none}
+.content{flex:1;min-height:0;overflow-y:auto}
+.welcome{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px}
+.welcome-inner{max-width:370px}
+.logo-mark{width:85px;height:85px;border-radius:27px;margin:0 auto 20px;display:grid;place-items:center;background:linear-gradient(145deg,#1b8f89,#1b4765);font-size:35px;font-weight:900;color:white;box-shadow:var(--shadow)}
+.welcome h1{font-size:27px;margin:0 0 10px}
+.welcome p{color:var(--muted);font-size:14px;line-height:1.7}
+.small-note{font-size:11px;color:var(--muted);margin-top:22px}
+.messages{padding:22px 5%;display:flex;flex-direction:column;gap:12px}
+.day-label{text-align:center;color:var(--muted);font-size:10px;margin:8px 0 12px}
+.message{max-width:min(75%,520px);padding:11px 14px;border-radius:15px;background:var(--bubble);font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.message.mine{align-self:flex-end;background:var(--mine);color:var(--text);border-bottom-right-radius:4px}
+.message.theirs{align-self:flex-start;border-bottom-left-radius:4px}
+.message-time{text-align:right;font-size:9px;opacity:.65;margin-top:5px}
+.composer{display:flex;align-items:center;gap:9px;padding:13px 18px;background:var(--panel);border-top:1px solid var(--line)}
+.composer input{flex:1;min-width:0;background:var(--panel2);border:1px solid var(--line);border-radius:25px;padding:14px 17px;color:var(--text);outline:none}
+.send-btn{width:47px;height:47px;border:0;border-radius:50%;background:var(--accent);color:#06251f;font-size:20px;font-weight:900}
+.screen{padding:26px;max-width:850px;margin:0 auto;width:100%}
+.screen h2{margin:0 0 7px;font-size:25px}
+.screen-intro{color:var(--muted);font-size:13px;margin:0 0 23px;line-height:1.6}
+.status-card,.setting-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;margin-bottom:12px}
+.status-card{display:flex;align-items:center;gap:13px}
+.status-card .status-copy{flex:1}
+.status-title{font-weight:750;font-size:14px}
+.status-desc{color:var(--muted);font-size:12px;margin-top:5px}
 .status-ring{padding:3px;border:2px solid var(--accent);border-radius:50%}
-.status-text{font-size:13px}
-.status-text small{display:block;color:var(--muted);margin-top:5px;font-size:10px}
-.mobile-menu{display:none}
-.light{
-  --bg:#edf3f7;--panel:#fff;--panel2:#f0f5f8;
-  --text:#15283a;--muted:#65798b;--border:rgba(0,0,0,.1);
-  --mine:#c8f3e9;--other:#fff;
-}
+.primary-btn{border:0;border-radius:11px;padding:12px 16px;background:var(--accent);color:#06251f;font-weight:800}
+.setting-card label{display:block;font-size:13px;font-weight:750;margin-bottom:9px}
+.setting-card input[type=text]{width:100%;padding:12px;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;outline:none}
+.setting-line{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.setting-line p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+.switch{width:48px;height:27px;border-radius:20px;background:var(--panel3);border:0;padding:3px}
+.switch:after{content:"";display:block;width:21px;height:21px;border-radius:50%;background:var(--muted);transition:.2s}
+.switch.on{background:var(--accent)}
+.switch.on:after{transform:translateX(21px);background:#fff}
+.footer-note{color:var(--muted);font-size:11px;line-height:1.7;padding:12px 2px}
+.empty{padding:35px 15px;text-align:center;color:var(--muted);font-size:13px}
+.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#20394a;color:white;padding:12px 18px;border-radius:12px;font-size:13px;box-shadow:var(--shadow);z-index:10;display:none;max-width:90%;text-align:center}
+.mobile-nav{display:none}
 @media(max-width:700px){
+  .app{height:100dvh}
   .sidebar{width:100%;min-width:0;border:0}
-  .main{display:none}
-  .app.show-chat .sidebar{display:none}
-  .app.show-chat .main{display:flex;width:100%}
-  .mobile-menu{display:block}
-  .topbar{padding:10px;height:65px}
-  .chat-area{padding:17px 12px}
+  .main{display:none;width:100%}
+  .app.show-main .sidebar{display:none}
+  .app.show-main .main{display:flex}
+  .main-head{height:68px;padding:10px 13px}
+  .mobile-back{display:block}
+  .screen{padding:22px 16px}
+  .messages{padding:18px 13px}
   .composer{padding:10px}
-  .panel-screen{padding:17px}
+  .message{max-width:86%}
+  .side-head{padding:17px 15px 10px}
 }
 </style>
 </head>
 <body>
 <div class="app" id="app">
-
-<aside class="sidebar">
-  <div class="brand">
-    <div class="logo">N</div>
-    <div>
-      <h1>CD NEXA</h1>
-      <small>CONNECT BEYOND LIMITS</small>
+  <aside class="sidebar">
+    <div class="side-head">
+      <div class="brand-row">
+        <div>
+          <div class="brand">CD <span>NEXA</span></div>
+          <div class="tagline">CONNECT BEYOND LIMITS</div>
+        </div>
+        <button class="icon-btn" onclick="showScreen('settings')" aria-label="Settings">⚙</button>
+      </div>
+      <div class="search-wrap"><input id="search" placeholder="Search conversations..." oninput="renderChats()"></div>
     </div>
-  </div>
-
-  <div class="profile">
-    <div class="avatar" id="myAvatar">Y</div>
-    <div class="profile-info">
-      <strong id="myName">Your profile</strong>
-      <small>Personal account</small>
+    <div class="section-row">
+      <span class="section-label" id="listHeading">MESSAGES</span>
+      <button class="add-btn" onclick="addContact()">＋ Add contact</button>
     </div>
-    <button class="iconbtn" onclick="showScreen('settings')">⚙</button>
-  </div>
-
-  <div class="tabs">
-    <button class="tab active" id="tabChats" onclick="showScreen('chats')">Chats</button>
-    <button class="tab" id="tabStatus" onclick="showScreen('status')">Status</button>
-    <button class="tab" id="tabSettings" onclick="showScreen('settings')">Settings</button>
-  </div>
-
-  <div class="search">
-    <span>⌕</span>
-    <input id="searchInput" placeholder="Search conversations..." oninput="renderChats()">
-  </div>
-
-  <div class="section-label">RECENT CONVERSATIONS</div>
-  <div class="chat-list" id="chatList"></div>
-
-  <div class="sidebar-footer">
-    CD NEXA · CONNECT BEYOND LIMITS<br>
-    Independent messaging platform
-  </div>
-</aside>
-
-<main class="main">
-  <div class="topbar">
-    <button class="iconbtn mobile-menu" onclick="backToList()">‹</button>
-    <div class="avatar" id="activeAvatar">N</div>
-    <div class="top-info">
-      <strong id="activeName">Welcome to CD NEXA</strong>
-      <small id="activeSub">Your conversations, your space</small>
+    <div class="nav">
+      <button id="navChats" class="active" onclick="showScreen('chats')">▣ Chats</button>
+      <button id="navStatus" onclick="showScreen('status')">◉ Status</button>
+      <button id="navSettings" onclick="showScreen('settings')">⚙ Settings</button>
     </div>
-    <div class="top-actions">
-      <button class="iconbtn" onclick="callInfo()" title="Audio call">☎</button>
-      <button class="iconbtn" onclick="callInfo()" title="Video call">▣</button>
-      <button class="iconbtn" onclick="showScreen('settings')" title="Settings">⋮</button>
+    <div class="chat-list" id="chatList"></div>
+  </aside>
+
+  <main class="main">
+    <header class="main-head">
+      <button class="icon-btn mobile-back" onclick="backToMenu()" aria-label="Back">‹</button>
+      <div class="avatar" id="headAvatar">N</div>
+      <div class="head-copy">
+        <div class="head-title" id="headTitle">Welcome to CD NEXA</div>
+        <div class="head-sub" id="headSub">Your conversations, in one place</div>
+      </div>
+      <div class="head-actions" id="headActions"></div>
+    </header>
+    <div class="content" id="content">
+      <div class="welcome">
+        <div class="welcome-inner">
+          <div class="logo-mark">N</div>
+          <h1>Connect beyond limits.</h1>
+          <p>Welcome to CD NEXA. Choose a conversation or add a contact to explore your messaging space.</p>
+          <button class="primary-btn" onclick="addContact()">＋ Add your first contact</button>
+          <div class="small-note">A new way to stay connected.</div>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="notice">
-    LOCAL PREVIEW · Messages are stored on this device, not sent to other people.
-  </div>
-
-  <div class="chat-area" id="chatArea">
-    <div class="empty">
-      <div class="big">✦</div>
-      <strong>Welcome to CD NEXA</strong>
-      <p>Select a conversation or create a new one to explore your messaging experience.</p>
-      <button class="action primary" onclick="newChat()">＋ New conversation</button>
-    </div>
-  </div>
-
-  <div class="composer">
-    <button class="iconbtn" onclick="attachmentInfo()" title="Attach">＋</button>
-    <textarea id="messageInput" rows="1" placeholder="Write a message..." onkeydown="handleEnter(event)"></textarea>
-    <button class="send" onclick="sendMessage()" title="Send">➤</button>
-  </div>
-</main>
+  </main>
 </div>
+<div class="toast" id="toast"></div>
 
 <script>
-"use strict";
-
-const starterChats = [
-  {
-    id:1,name:"NEXA Assistant",avatar:"N",preview:"Welcome to your new space.",
-    time:"Now",unread:0,messages:[
-      {text:"Welcome to CD NEXA! This is your local preview. You can explore the interface and test sending messages here.",mine:false,time:"Now"}
-    ]
-  },
-  {
-    id:2,name:"Alex Morgan",avatar:"A",preview:"Hey! How are you?",
-    time:"Yesterday",unread:2,messages:[
-      {text:"Hey! How are you?",mine:false,time:"Yesterday"},
-      {text:"I'm doing well, thanks!",mine:true,time:"Yesterday"}
-    ]
-  },
-  {
-    id:3,name:"Family Group",avatar:"F",preview:"Good morning everyone ❤️",
-    time:"Yesterday",unread:0,messages:[
-      {text:"Good morning everyone ❤️",mine:false,time:"Yesterday"}
-    ]
-  },
-  {
-    id:4,name:"Sarah",avatar:"S",preview:"Talk to you later.",
-    time:"Monday",unread:0,messages:[
-      {text:"Talk to you later.",mine:false,time:"Monday"}
-    ]
-  }
-];
-
-function loadData(key,fallback){
-  try{
-    const value=localStorage.getItem(key);
-    return value ? JSON.parse(value) : structuredClone(fallback);
-  }catch(error){
-    return structuredClone(fallback);
-  }
-}
-
-let chats=loadData("nexa_chats",starterChats);
-let statuses=loadData("nexa_statuses",[]);
+const KEY="cdnexa_v2_data";
+const defaultData={
+  profile:"My Profile",
+  theme:"dark",
+  contacts:[
+    {id:"nexa",name:"NEXA Assistant",initials:"NA",color:"",messages:[{text:"Welcome to CD NEXA! This is a local preview. You can explore the interface and send test messages.",mine:false,time:"09:00"}]},
+    {id:"alex",name:"Alex Morgan",initials:"AM",color:"purple",messages:[{text:"Hey! Welcome to NEXA 👋",mine:false,time:"Yesterday"}]},
+    {id:"family",name:"Family Group",initials:"FG",color:"orange",messages:[{text:"Good morning everyone ❤️",mine:false,time:"Yesterday"}]},
+    {id:"sarah",name:"Sarah",initials:"S",color:"blue",messages:[{text:"Talk to you later!",mine:false,time:"Monday"}]}
+  ],
+  statuses:[]
+};
+let data=loadData();
 let activeId=null;
 let currentScreen="chats";
-let profileName=loadData("nexa_name","Your name");
 
-function saveData(){
+function loadData(){
   try{
-    localStorage.setItem("nexa_chats",JSON.stringify(chats));
-    localStorage.setItem("nexa_statuses",JSON.stringify(statuses));
-    localStorage.setItem("nexa_name",JSON.stringify(profileName));
-  }catch(error){
-    alert("Your device could not save this change. Check available storage.");
-  }
+    const saved=JSON.parse(localStorage.getItem(KEY));
+    if(saved && Array.isArray(saved.contacts)) return {...defaultData,...saved};
+  }catch(e){}
+  return JSON.parse(JSON.stringify(defaultData));
 }
-
+function saveData(){localStorage.setItem(KEY,JSON.stringify(data))}
 function escapeHTML(value){
-  return String(value).replace(/[&<>"']/g,function(character){
-    return {
-      "&":"&amp;","<":"&lt;",">":"&gt;",
-      '"':"&quot;","'":"&#39;"
-    }[character];
-  });
+  return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-
+function toast(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;el.style.display="block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>el.style.display="none",2600);
+}
 function initials(name){
-  return name.trim().split(/\s+/).map(part=>part[0]).join("").slice(0,2).toUpperCase();
+  return name.trim().split(/\s+/).slice(0,2).map(x=>x[0]||"").join("").toUpperCase();
 }
-
-function updateProfile(){
-  document.getElementById("myName").textContent=profileName;
-  document.getElementById("myAvatar").textContent=initials(profileName);
+function avatarClass(contact){return contact.color||""}
+function setHeader(title,sub,initial="N",color=""){
+  document.getElementById("headTitle").textContent=title;
+  document.getElementById("headSub").textContent=sub;
+  const a=document.getElementById("headAvatar");
+  a.textContent=initial;a.className="avatar "+color;
 }
-
-function renderChats(){
-  const query=document.getElementById("searchInput").value.toLowerCase();
-  const list=document.getElementById("chatList");
-  list.innerHTML="";
-
-  chats.filter(chat=>
-    chat.name.toLowerCase().includes(query) ||
-    chat.preview.toLowerCase().includes(query)
-  ).forEach(chat=>{
-    const item=document.createElement("div");
-    item.className="chat-item"+(chat.id===activeId?" active":"");
-    item.innerHTML=`
-      <div class="avatar">${escapeHTML(chat.avatar)}</div>
-      <div class="chat-details">
-        <div class="chat-top">
-          <strong>${escapeHTML(chat.name)}</strong>
-          <time>${escapeHTML(chat.time)}</time>
-        </div>
-        <div class="chat-bottom">
-          <span>${escapeHTML(chat.preview)}</span>
-          ${chat.unread?`<b class="unread">${chat.unread}</b>`:""}
-        </div>
-      </div>`;
-    item.onclick=()=>openChat(chat.id);
-    list.appendChild(item);
+function setNav(){
+  ["Chats","Status","Settings"].forEach(s=>{
+    document.getElementById("nav"+s).classList.toggle("active",currentScreen===s.toLowerCase());
   });
-
-  if(!list.children.length){
-    list.innerHTML='<p style="padding:15px;color:var(--muted);font-size:12px">No conversations found.</p>';
-  }
+  document.getElementById("listHeading").textContent=currentScreen==="chats"?"MESSAGES":currentScreen.toUpperCase();
 }
-
-function openChat(id){
-  const chat=chats.find(item=>item.id===id);
-  if(!chat)return;
-
-  activeId=id;
-  chat.unread=0;
-  currentScreen="chats";
-
-  document.getElementById("activeName").textContent=chat.name;
-  document.getElementById("activeAvatar").textContent=chat.avatar;
-  document.getElementById("activeSub").textContent="Local preview conversation";
-
-  document.getElementById("app").classList.add("show-chat");
-  renderChats();
-  renderMessages();
-  updateTabs();
-  saveData();
-}
-
-function renderMessages(){
-  const area=document.getElementById("chatArea");
-  const chat=chats.find(item=>item.id===activeId);
-
-  if(!chat){
-    area.innerHTML=`
-      <div class="empty">
-        <div class="big">✦</div>
-        <strong>Welcome to CD NEXA</strong>
-        <p>Select a conversation to begin.</p>
-      </div>`;
-    return;
-  }
-
-  area.innerHTML='<div class="date-label">TODAY</div>';
-
-  chat.messages.forEach(message=>{
-    const bubble=document.createElement("div");
-    bubble.className="message "+(message.mine?"mine":"them");
-    bubble.innerHTML=`
-      ${escapeHTML(message.text).replace(/\n/g,"<br>")}
-      <small>${escapeHTML(message.time)} ${message.mine?"✓✓":""}</small>`;
-    area.appendChild(bubble);
-  });
-
-  area.scrollTop=area.scrollHeight;
-}
-
-function currentTime(){
-  return new Date().toLocaleTimeString([],{
-    hour:"2-digit",minute:"2-digit"
-  });
-}
-
-function sendMessage(){
-  const input=document.getElementById("messageInput");
-  const text=input.value.trim();
-
-  if(!text)return;
-
-  if(!activeId){
-    alert("Open a conversation before sending a message.");
-    return;
-  }
-
-  const chat=chats.find(item=>item.id===activeId);
-  if(!chat)return;
-
-  chat.messages.push({
-    text:text,
-    mine:true,
-    time:currentTime()
-  });
-
-  chat.preview=text;
-  chat.time=currentTime();
-
-  input.value="";
-  saveData();
-  renderMessages();
-  renderChats();
-}
-
-function handleEnter(event){
-  if(event.key==="Enter"&&!event.shiftKey){
-    event.preventDefault();
-    sendMessage();
-  }
-}
-
-function newChat(){
-  const name=prompt("Enter the contact or group name:");
-  if(!name||!name.trim())return;
-
-  const cleanName=name.trim();
-  const existing=chats.find(item=>item.name.toLowerCase()===cleanName.toLowerCase());
-
-  if(existing){
-    openChat(existing.id);
-    return;
-  }
-
-  const id=Date.now();
-  chats.unshift({
-    id:id,
-    name:cleanName,
-    avatar:initials(cleanName),
-    preview:"New conversation",
-    time:"Now",
-    unread:0,
-    messages:[]
-  });
-
-  saveData();
-  renderChats();
-  openChat(id);
-}
-
-function updateTabs(){
-  ["Chats","Status","Settings"].forEach(name=>{
-    const button=document.getElementById("tab"+name);
-    button.classList.toggle("active",currentScreen===name.toLowerCase());
-  });
-}
-
 function showScreen(screen){
   currentScreen=screen;
   activeId=null;
-  document.getElementById("app").classList.remove("show-chat");
-  updateTabs();
-
-  const area=document.getElementById("chatArea");
-  const composer=document.querySelector(".composer");
-  const notice=document.querySelector(".notice");
-
-  composer.style.display=screen==="chats"?"flex":"none";
-  notice.style.display=screen==="chats"?"block":"none";
-
-  document.getElementById("activeName").textContent=
-    screen==="chats"?"Welcome to CD NEXA":
-    screen==="status"?"NEXA Status":
-    "Settings";
-
-  document.getElementById("activeAvatar").textContent=
-    screen==="chats"?"N":screen==="status"?"◉":"⚙";
-
-  document.getElementById("activeSub").textContent=
-    screen==="chats"?"Your conversations, your space":
-    screen==="status"?"Updates from your contacts":
-    "Personalise your experience";
-
+  document.getElementById("app").classList.add("show-main");
+  setNav();
+  document.getElementById("headActions").innerHTML="";
   if(screen==="chats"){
-    area.innerHTML=`
-      <div class="empty">
-        <div class="big">✦</div>
-        <strong>Welcome to CD NEXA</strong>
-        <p>Select a conversation or create a new one.</p>
-        <button class="action primary" onclick="newChat()">＋ New conversation</button>
-      </div>`;
+    setHeader("Your conversations","Select a chat to get started","N");
+    renderWelcome();
+  }else if(screen==="status"){
+    setHeader("Status","Share a moment with your contacts","◉");
+    renderStatus();
+  }else{
+    setHeader("Settings","Make CD NEXA yours","⚙");
+    renderSettings();
   }
-
-  if(screen==="status")renderStatuses(area);
-  if(screen==="settings")renderSettings(area);
-
   renderChats();
 }
-
-function renderStatuses(area){
-  let html=`
-    <div class="panel-screen">
-      <h2>Status updates</h2>
-      <p>Share a short update with people using this local preview.</p>
-      <div class="feature-card">
-        <h3>My status</h3>
-        <p>Add a text update to your status list.</p>
-        <button class="action primary" onclick="addStatus()">＋ Add status</button>
-      </div>
-      <h3 style="font-size:13px">Recent updates</h3>`;
-
-  if(!statuses.length){
-    html+='<p>No status updates yet. Create your first one.</p>';
-  }
-
-  statuses.forEach(status=>{
-    html+=`
-      <div class="status-row">
-        <div class="status-ring"><div class="avatar">${escapeHTML(initials(profileName))}</div></div>
-        <div class="status-text">
-          <strong>${escapeHTML(profileName)}</strong>
-          <small>${escapeHTML(status.time)}</small>
-          <p>${escapeHTML(status.text)}</p>
-        </div>
-      </div>`;
-  });
-
-  html+="</div>";
-  area.innerHTML=html;
+function backToMenu(){
+  document.getElementById("app").classList.remove("show-main");
+  activeId=null;
 }
-
+function renderWelcome(){
+  document.getElementById("content").innerHTML=`
+  <div class="welcome"><div class="welcome-inner">
+  <div class="logo-mark">N</div><h1>Connect beyond limits.</h1>
+  <p>Welcome to CD NEXA. Choose a conversation or add a contact to explore your messaging space.</p>
+  <button class="primary-btn" onclick="addContact()">＋ Add your first contact</button>
+  <div class="small-note">Your messages in this preview are saved on this device only.</div>
+  </div></div>`;
+}
+function renderChats(){
+  const list=document.getElementById("chatList");
+  const q=(document.getElementById("search").value||"").toLowerCase();
+  if(currentScreen!=="chats"){list.innerHTML="";return}
+  const contacts=data.contacts.filter(c=>c.name.toLowerCase().includes(q));
+  if(!contacts.length){list.innerHTML='<div class="empty">No conversations found.</div>';return}
+  list.innerHTML=contacts.map(c=>{
+    const last=c.messages[c.messages.length-1];
+    return `<button class="chat-item ${activeId===c.id?"selected":""}" onclick="openChat('${c.id}')">
+      <div class="avatar ${avatarClass(c)}">${escapeHTML(c.initials||initials(c.name))}</div>
+      <div class="chat-meta"><div class="chat-top"><span class="chat-name">${escapeHTML(c.name)}</span><span class="chat-time">${escapeHTML(last?.time||"")}</span></div>
+      <div class="chat-preview">${last?(last.mine?"You: ":"")+escapeHTML(last.text):"Start a conversation"}</div></div>
+    </button>`;
+  }).join("");
+}
+function openChat(id){
+  const c=data.contacts.find(x=>x.id===id);if(!c)return;
+  activeId=id;currentScreen="chats";setNav();renderChats();
+  setHeader(c.name,"Local preview conversation",c.initials||initials(c.name),avatarClass(c));
+  document.getElementById("headActions").innerHTML='<button class="icon-btn" onclick="toast(\'Voice calls are not connected in this preview.\')">☎</button>';
+  document.getElementById("app").classList.add("show-main");
+  renderMessages();
+}
+function renderMessages(){
+  const c=data.contacts.find(x=>x.id===activeId);if(!c)return;
+  document.getElementById("content").innerHTML=`
+  <div class="messages" id="messages">
+    <div class="day-label">LOCAL PREVIEW • MESSAGES STAY ON THIS DEVICE</div>
+    ${c.messages.map(m=>`<div class="message ${m.mine?"mine":"theirs"}">${escapeHTML(m.text)}<div class="message-time">${escapeHTML(m.time||"")}</div></div>`).join("")}
+  </div>
+  <form class="composer" onsubmit="sendMessage(event)">
+    <input id="messageInput" autocomplete="off" placeholder="Write a message..." aria-label="Write a message">
+    <button class="send-btn" type="submit" aria-label="Send message">➤</button>
+  </form>`;
+  const box=document.getElementById("messages");box.scrollTop=box.scrollHeight;
+}
+function sendMessage(event){
+  event.preventDefault();
+  const input=document.getElementById("messageInput");
+  const text=input.value.trim();if(!text||!activeId)return;
+  const c=data.contacts.find(x=>x.id===activeId);
+  c.messages.push({text,mine:true,time:new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})});
+  saveData();renderMessages();renderChats();
+}
+function addContact(){
+  const name=prompt("Enter the contact's name:");
+  if(!name||!name.trim())return;
+  const clean=name.trim();
+  if(data.contacts.some(c=>c.name.toLowerCase()===clean.toLowerCase())){
+    toast("That contact already exists.");return;
+  }
+  const id="contact_"+Date.now();
+  data.contacts.unshift({id,name:clean,initials:initials(clean),color:"green",messages:[]});
+  saveData();showScreen("chats");openChat(id);
+  toast("Contact added to this device.");
+}
+function renderStatus(){
+  const own=data.statuses.filter(s=>s.owner==="me");
+  document.getElementById("content").innerHTML=`
+  <div class="screen">
+    <h2>Share a moment.</h2>
+    <p class="screen-intro">Post a short text update in your local preview.</p>
+    <div class="status-card">
+      <div class="status-ring"><div class="avatar">${escapeHTML(initials(data.profile))}</div></div>
+      <div class="status-copy"><div class="status-title">My status</div><div class="status-desc">${own.length?escapeHTML(own[0].text):"No update shared yet"}</div></div>
+      <button class="primary-btn" onclick="addStatus()">＋ Update</button>
+    </div>
+    <h3 style="font-size:12px;color:var(--muted);letter-spacing:1px;margin:25px 0 12px">RECENT UPDATES</h3>
+    ${data.statuses.filter(s=>s.owner!=="me").map(s=>`<div class="status-card"><div class="avatar purple">${escapeHTML(s.initials)}</div><div class="status-copy"><div class="status-title">${escapeHTML(s.owner)}</div><div class="status-desc">${escapeHTML(s.text)}</div></div></div>`).join("")||'<div class="empty">No contact updates yet. Status sharing is local in this preview.</div>'}
+    <p class="footer-note">Status updates here are saved only in this browser. They are not shared with other users yet.</p>
+  </div>`;
+}
 function addStatus(){
   const text=prompt("Write your status update:");
   if(!text||!text.trim())return;
-
-  statuses.unshift({
-    text:text.trim(),
-    time:currentTime()
-  });
-
-  saveData();
-  renderStatuses(document.getElementById("chatArea"));
+  data.statuses.unshift({owner:"me",initials:initials(data.profile),text:text.trim(),time:Date.now()});
+  saveData();renderStatus();toast("Your local status was added.");
 }
-
-function renderSettings(area){
-  area.innerHTML=`
-    <div class="panel-screen">
-      <h2>Settings</h2>
-      <p>Make CD NEXA feel like your own space.</p>
-
-      <div class="feature-card">
-        <h3>Personal profile</h3>
-        <p>Change the name displayed in your local preview.</p>
-        <input class="field" id="profileInput" value="${escapeHTML(profileName)}" placeholder="Your name">
-        <button class="action primary" onclick="saveProfile()">Save profile</button>
-      </div>
-
-      <div class="feature-card">
-        <h3>Appearance</h3>
-        <p>Choose how your app looks.</p>
-        <button class="action" onclick="setTheme('dark')">Dark theme</button>
-        <button class="action" onclick="setTheme('light')">Light theme</button>
-      </div>
-
-      <div class="feature-card">
-        <h3>Privacy and security</h3>
-        <p>Privacy controls for online status, typing indicators and private chats will be added when the secure online account system is implemented.</p>
-        <p>Do not use this preview to store confidential messages.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Storage</h3>
-        <p>Your current preview conversations and statuses are saved in this browser on this device.</p>
-        <button class="action" onclick="exportBackup()">Export backup</button>
-        <button class="action" onclick="clearPreview()">Clear local data</button>
-      </div>
-
-      <div class="feature-card">
-        <h3>About CD NEXA</h3>
-        <p><strong>Connect Beyond Limits.</strong></p>
-        <p>An independent messaging platform in development. Not affiliated with WhatsApp or Meta.</p>
-        <p>Version 1.0 · Local preview</p>
-      </div>
-    </div>`;
+function renderSettings(){
+  document.getElementById("content").innerHTML=`
+  <div class="screen">
+    <h2>Settings</h2>
+    <p class="screen-intro">Personalise your CD NEXA preview.</p>
+    <div class="setting-card">
+      <label for="profileName">Your display name</label>
+      <input id="profileName" type="text" value="${escapeHTML(data.profile)}" maxlength="35">
+      <button class="primary-btn" style="margin-top:12px" onclick="saveProfile()">Save name</button>
+    </div>
+    <div class="setting-card">
+      <div class="setting-line"><div><div style="font-weight:750;font-size:14px">Dark appearance</div><p>Switch between dark and light themes.</p></div>
+      <button id="themeSwitch" class="switch ${data.theme==="dark"?"on":""}" onclick="toggleTheme()" aria-label="Toggle theme"></button></div>
+    </div>
+    <div class="setting-card">
+      <div style="font-weight:750;font-size:14px">Your data</div>
+      <p class="status-desc">Your preview conversations are stored in this browser on this device.</p>
+      <button class="primary-btn" style="margin-top:12px" onclick="exportData()">Export backup</button>
+      <button class="primary-btn" style="margin-top:12px;background:#a94343;color:white" onclick="clearData()">Reset preview data</button>
+    </div>
+    <div class="setting-card">
+      <div style="font-weight:750;font-size:14px">About CD NEXA</div>
+      <p class="status-desc">Connect Beyond Limits. Version 0.2 • Local preview.</p>
+      <p class="footer-note">This version does not yet have online accounts, cloud messages, real calls, or end-to-end encryption. Do not use it for private or sensitive messages.</p>
+    </div>
+  </div>`;
 }
-
 function saveProfile(){
-  const input=document.getElementById("profileInput");
-  const name=input.value.trim();
-
-  if(!name){
-    alert("Please enter a name.");
-    return;
-  }
-
-  profileName=name;
-  saveData();
-  updateProfile();
-  alert("Profile name saved on this device.");
+  const value=document.getElementById("profileName").value.trim();
+  if(!value){toast("Please enter a display name.");return}
+  data.profile=value;saveData();toast("Display name saved.");
 }
-
-function setTheme(theme){
-  document.body.classList.toggle("light",theme==="light");
-  localStorage.setItem("nexa_theme",theme);
+function toggleTheme(){
+  data.theme=data.theme==="dark"?"light":"dark";
+  saveData();applyTheme();renderSettings();
 }
-
-function exportBackup(){
-  const backup={
-    profileName:profileName,
-    chats:chats,
-    statuses:statuses,
-    exportedAt:new Date().toISOString()
-  };
-
-  const file=new Blob([JSON.stringify(backup,null,2)],{
-    type:"application/json"
-  });
-
-  const url=URL.createObjectURL(file);
-  const link=document.createElement("a");
-  link.href=url;
-  link.download="cd-nexa-backup.json";
-  link.click();
-  URL.revokeObjectURL(url);
+function applyTheme(){document.body.classList.toggle("light",data.theme==="light")}
+function exportData(){
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);const a=document.createElement("a");
+  a.href=url;a.download="cd-nexa-backup.json";a.click();URL.revokeObjectURL(url);
+  toast("Backup prepared.");
 }
-
-function clearPreview(){
-  if(!confirm("This will erase your locally saved conversations and statuses. Continue?"))return;
-
-  localStorage.removeItem("nexa_chats");
-  localStorage.removeItem("nexa_statuses");
-  localStorage.removeItem("nexa_name");
-
-  chats=structuredClone(starterChats);
-  statuses=[];
-  profileName="Your name";
-  activeId=null;
-
-  saveData();
-  updateProfile();
-  showScreen("chats");
-  alert("Local preview data cleared.");
+function clearData(){
+  if(!confirm("Reset all local preview contacts, messages and statuses?"))return;
+  data=JSON.parse(JSON.stringify(defaultData));saveData();applyTheme();showScreen("chats");
+  toast("Preview data reset.");
 }
-
-function callInfo(){
-  alert("Audio and video calls are not connected yet. They require a real-time calling service and permissions.");
-}
-
-function attachmentInfo(){
-  alert("Photo, video, document and voice-note sharing will be added with the online storage and messaging system.");
-}
-
-function backToList(){
-  document.getElementById("app").classList.remove("show-chat");
-}
-
-function startApp(){
-  updateProfile();
-  const savedTheme=localStorage.getItem("nexa_theme")||"dark";
-  setTheme(savedTheme);
-  renderChats();
-}
-
-startApp();
+applyTheme();
+showScreen("chats");
 </script>
 </body>
 </html>
