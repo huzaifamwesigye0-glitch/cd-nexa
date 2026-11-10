@@ -3,201 +3,315 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#075e54">
-<title>CD NEXA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b19">
+<title>CD NEXA — Connect Beyond Limits</title>
 <style>
-:root{--bg:#08151c;--surface:#10232d;--surface2:#172e39;--surface3:#203b46;--text:#f4f8fa;--muted:#91a5ae;--line:#263e48;--accent:#00c9a7;--green:#075e54;--sent:#075e54;--received:#203943}
-body.light{--bg:#f4f7f8;--surface:#fff;--surface2:#f0f4f5;--surface3:#e5edef;--text:#172a32;--muted:#71838a;--line:#dce5e7;--accent:#079e86;--sent:#d5f8e8;--received:#fff}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}
-#app{height:100dvh;max-width:1100px;margin:auto;background:var(--surface);display:flex;flex-direction:column;overflow:hidden}
-.topbar{height:62px;background:var(--green);color:white;display:flex;align-items:center;padding:0 15px;gap:12px;flex-shrink:0}
-.brand{font-size:23px;font-weight:900;flex:1}.brand span{color:#5af0d1}.topicon{border:0;background:none;color:white;font-size:23px;padding:6px}
-.tabs{height:47px;background:var(--green);display:flex;flex-shrink:0}.tabs button{flex:1;border:0;background:none;color:#c7e2dc;font-size:11px;font-weight:800;letter-spacing:.5px;position:relative}.tabs button.active{color:white}.tabs button.active:after{content:"";height:3px;background:#5af0d1;position:absolute;bottom:0;left:10%;width:80%}
-.page{display:none;flex:1;min-height:0;overflow-y:auto;background:var(--bg)}.page.active{display:block}
-.searchbar{padding:10px;background:var(--surface)}.searchbar input{width:100%;padding:12px 15px;border:0;border-radius:22px;background:var(--surface2);color:var(--text);outline:0}
-.filters{display:flex;gap:8px;padding:10px 12px;overflow-x:auto;background:var(--surface);border-bottom:1px solid var(--line)}
-.filters button{white-space:nowrap;border:1px solid var(--line);border-radius:18px;padding:8px 14px;background:var(--surface2);color:var(--muted);font-size:12px;font-weight:700}
-.filters button.active{background:var(--accent);color:#062b25;border-color:var(--accent)}
-.chatrow{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--surface);border-bottom:1px solid var(--line)}
-.avatar{width:51px;height:51px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;color:white;font-weight:800;background:linear-gradient(145deg,#078b83,#294e81)}
-.a2{background:linear-gradient(145deg,#774db3,#bd6797)}.a3{background:linear-gradient(145deg,#bd7541,#d5ad50)}.a4{background:linear-gradient(145deg,#3475ad,#54a8b5)}.a5{background:linear-gradient(145deg,#287e5e,#70ad78)}
-.chatdetails{flex:1;min-width:0}.chatline{display:flex;justify-content:space-between;gap:7px}.chatname{font-size:14px;font-weight:750}.time{font-size:10px;color:var(--muted)}.preview{font-size:12px;color:var(--muted);margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.chatrow.unread .chatname{font-weight:900}.chatrow.unread .preview{color:var(--text);font-weight:650}
-.chat-right{display:flex;flex-direction:column;align-items:flex-end;gap:7px}.count{background:var(--accent);color:#062b25;border-radius:20px;min-width:19px;padding:3px 6px;text-align:center;font-size:10px;font-weight:900}
-.marks{font-size:10px;color:var(--accent);height:12px}
-.fab{position:fixed;right:max(20px,calc((100vw - 1100px)/2 + 20px));bottom:22px;width:57px;height:57px;border:0;border-radius:18px;background:var(--accent);color:#062b25;font-size:25px;box-shadow:0 5px 20px #0005}
-.page-title{font-size:23px;font-weight:800;padding:20px 17px 5px}.page-sub{font-size:13px;color:var(--muted);padding:0 17px 16px}.section-title{padding:16px;color:var(--muted);font-size:11px;font-weight:900;letter-spacing:1px}
-.statusrow,.settingrow{display:flex;align-items:center;gap:13px;padding:13px 16px;background:var(--surface);border-bottom:1px solid var(--line)}
-.ring{padding:3px;border:2px solid var(--accent);border-radius:50%}.ring .avatar{width:45px;height:45px}.rowtext{flex:1}.rowtext strong{font-size:14px}.rowtext small{display:block;color:var(--muted);font-size:12px;margin-top:5px}
-.card{margin:12px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:15px}.card h3{margin:0 0 8px;font-size:15px}.card p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
-.actionbtn{border:0;border-radius:10px;background:var(--accent);color:#052b25;font-weight:800;padding:11px 15px}
-.settingicon{width:39px;height:39px;border-radius:12px;background:var(--surface3);display:grid;place-items:center;color:var(--accent);font-size:18px}.settingcopy{flex:1}.settingcopy strong{font-size:14px}.settingcopy small{display:block;color:var(--muted);font-size:12px;margin-top:4px}
-.subpage,.conversation{display:none;position:absolute;inset:0;background:var(--bg);z-index:5;flex-direction:column}.subpage.open,.conversation.open{display:flex}
-.backbar,.chathead{height:61px;display:flex;align-items:center;gap:13px;padding:0 13px;background:var(--green);color:white;flex-shrink:0}.backbar button,.chathead button{border:0;background:none;color:white;font-size:24px}.subcontent{overflow:auto;flex:1}
-.chathead .avatar{width:40px;height:40px}.chatheadcopy{flex:1}.chatheadcopy strong{display:block;font-size:14px}.chatheadcopy small{font-size:11px;color:#c5ded8}
-.messages{flex:1;overflow:auto;padding:16px 12px;display:flex;flex-direction:column;gap:9px;background:var(--bg)}
-.msg{max-width:84%;padding:10px 12px;border-radius:12px;background:var(--received);font-size:14px;line-height:1.5;overflow-wrap:anywhere}.msg.mine{align-self:flex-end;background:var(--sent)}.msg small{display:block;text-align:right;color:var(--muted);font-size:9px;margin-top:4px}
-.composer{display:flex;gap:8px;padding:9px;background:var(--surface)}.composer input{flex:1;min-width:0;border:0;border-radius:22px;padding:13px;background:var(--surface2);color:var(--text);outline:0}.send{width:44px;height:44px;border:0;border-radius:50%;background:var(--accent);font-size:20px}
-.menu{display:none;position:fixed;right:12px;top:55px;z-index:9;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 25px #0006;min-width:190px;overflow:hidden}.menu.open{display:block}.menu button{display:block;width:100%;padding:13px;text-align:left;background:none;border:0;color:var(--text);font-size:13px}
-.empty{text-align:center;padding:35px 18px;color:var(--muted);font-size:13px}.toast{display:none;position:fixed;z-index:20;bottom:20px;left:50%;transform:translateX(-50%);background:#203c47;color:white;padding:12px 17px;border-radius:12px;font-size:13px;max-width:90%}
-@media(min-width:750px){#app{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
+:root {
+  --bg:#071b19;
+  --panel:#0d2522;
+  --card:#112e2a;
+  --text:#effaf6;
+  --muted:#91aaa2;
+  --accent:#16c79a;
+  --line:#20443d;
+  --bubble:#164c40;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.app{max-width:540px;margin:auto;min-height:100vh;background:var(--bg);position:relative;padding-bottom:76px}
+header{height:68px;padding:12px 17px;display:flex;align-items:center;justify-content:space-between;background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:39px;height:39px;border-radius:13px;background:linear-gradient(135deg,#18d5a0,#087c70);display:grid;place-items:center;font-weight:900;color:#04251e}
+.brand h1{font-size:19px;margin:0;letter-spacing:1px}
+.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:1.3px;margin-top:3px}
+.head-actions{display:flex;gap:17px}
+.icon-btn{background:none;border:0;color:var(--text);font-size:21px}
+.search-wrap{padding:12px 15px}
+.search{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:13px;color:var(--text);outline:none}
+.tabs{display:flex;justify-content:space-around;border-bottom:1px solid var(--line)}
+.tab{background:none;border:0;color:var(--muted);padding:13px 5px;font-size:12px;font-weight:700;position:relative}
+.tab.active{color:var(--accent)}
+.tab.active:after{content:"";position:absolute;bottom:0;left:15%;width:70%;height:3px;background:var(--accent);border-radius:5px}
+.filters{display:flex;gap:8px;padding:12px 14px;overflow:auto}
+.filter{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:20px;padding:7px 13px;font-size:11px}
+.filter.active{background:#164c40;color:#fff;border-color:var(--accent)}
+.section-title{padding:13px 16px 7px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:1px}
+.chat-row{display:flex;align-items:center;padding:12px 16px;gap:12px;border-bottom:1px solid rgba(32,68,61,.55);cursor:pointer}
+.chat-row:active{background:var(--panel)}
+.avatar{width:49px;height:49px;border-radius:50%;background:linear-gradient(135deg,#1b806c,#244c59);display:grid;place-items:center;font-weight:800;font-size:16px;flex-shrink:0;position:relative}
+.online{position:absolute;width:12px;height:12px;background:var(--accent);border:2px solid var(--bg);border-radius:50%;right:0;bottom:1px}
+.chat-info{flex:1;min-width:0}
+.chat-top,.chat-bottom{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.chat-name{font-weight:700;font-size:14px}
+.time,.preview{font-size:11px;color:var(--muted)}
+.preview{margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.unread{background:var(--accent);color:#03251d;border-radius:20px;min-width:19px;height:19px;padding:2px 6px;text-align:center;font-size:10px;font-weight:900}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(540px,100%);height:68px;background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:space-around;z-index:8}
+.nav-item{background:none;border:0;color:var(--muted);font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:60px}
+.nav-item span:first-child{font-size:21px}
+.nav-item.active{color:var(--accent)}
+.page{display:none}.page.active{display:block}
+.fab{position:fixed;bottom:86px;right:max(20px,calc((100vw - 500px)/2));width:55px;height:55px;border-radius:18px;background:var(--accent);color:#04251e;border:0;font-size:26px;box-shadow:0 8px 25px #0006;z-index:4}
+.status-card{padding:14px 16px;display:flex;gap:13px;align-items:center;border-bottom:1px solid var(--line)}
+.status-ring{padding:3px;border:2px solid var(--accent);border-radius:50%}
+.status-ring .avatar{width:48px;height:48px}
+.status-card small{display:block;color:var(--muted);margin-top:5px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;margin:14px;padding:16px}
+.panel h3{font-size:14px;margin:0 0 12px}
+.panel p{font-size:12px;color:var(--muted);line-height:1.6}
+.action-row{display:flex;align-items:center;gap:13px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.action-row:last-child{border:0}
+.action-icon{font-size:21px;width:29px;text-align:center}
+.action-row div:nth-child(2){flex:1}
+.action-row strong{font-size:13px}
+.action-row small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.arrow{color:var(--muted)}
+.profile{text-align:center;padding:25px}
+.profile .avatar{width:85px;height:85px;margin:0 auto 13px;font-size:27px}
+.profile h2{margin:5px}
+.profile p{color:var(--muted);font-size:12px}
+.primary{background:var(--accent);color:#05251e;border:0;border-radius:12px;padding:12px 16px;font-weight:800}
+.secondary{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:20;align-items:center;justify-content:center;padding:15px}
+.modal.open{display:flex}
+.modal-box{width:min(480px,100%);max-height:88vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.modal-head h3{margin:0}
+.close{border:0;background:none;color:var(--text);font-size:23px}
+.field{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--text);margin:7px 0 13px;outline:none}
+.chat-window{height:65vh;display:flex;flex-direction:column}
+.messages{flex:1;overflow:auto;padding:10px 2px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:83%;padding:11px 13px;border-radius:14px;background:var(--card);font-size:13px;line-height:1.5;align-self:flex-start;overflow-wrap:anywhere}
+.msg.mine{align-self:flex-end;background:var(--bubble)}
+.msg small{display:block;text-align:right;color:#b2d1c7;font-size:9px;margin-top:5px}
+.composer{display:flex;gap:7px;padding-top:12px}
+.composer input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:12px;color:var(--text)}
+.send{width:44px;border:0;border-radius:50%;background:var(--accent);color:#03251d;font-size:19px}
+.theme-options{display:flex;gap:10px;flex-wrap:wrap}
+.swatch{width:37px;height:37px;border-radius:50%;border:3px solid #ffffff33}
+.switch{accent-color:var(--accent);width:19px;height:19px}
+.empty{text-align:center;color:var(--muted);padding:50px 20px;font-size:13px}
 </style>
 </head>
 <body>
-<div id="app">
-<header class="topbar"><div class="brand">CD <span>NEXA</span></div><button class="topicon" onclick="toggleSearch()">⌕</button><button class="topicon" onclick="toggleMenu()">⋮</button></header>
-<nav class="tabs">
-<button id="tab-chats" class="active" onclick="tab('chats')">CHATS</button>
-<button id="tab-status" onclick="tab('status')">STATUS</button>
-<button id="tab-communities" onclick="tab('communities')">COMMUNITIES</button>
-<button id="tab-calls" onclick="tab('calls')">CALLS</button>
+<div class="app">
+<header>
+ <div class="brand"><div class="logo">N</div><div><h1>CD NEXA</h1><small>CONNECT BEYOND LIMITS</small></div></div>
+ <div class="head-actions">
+  <button class="icon-btn" onclick="showPage('search')">⌕</button>
+  <button class="icon-btn" onclick="showPage('settings')">⚙</button>
+ </div>
+</header>
+
+<main>
+<section id="chats" class="page active">
+ <div class="tabs">
+  <button class="tab active" onclick="filterChats('All',this)">CHATS</button>
+  <button class="tab" onclick="showPage('status')">STATUS</button>
+  <button class="tab" onclick="showPage('communities')">COMMUNITIES</button>
+  <button class="tab" onclick="showPage('calls')">CALLS</button>
+ </div>
+ <div class="search-wrap"><input class="search" id="chatSearch" placeholder="Search conversations..." oninput="renderChats()"></div>
+ <div class="filters">
+  <button class="filter active" onclick="filterChats('All',this)">All</button>
+  <button class="filter" onclick="filterChats('Unread',this)">Unread</button>
+  <button class="filter" onclick="filterChats('Favorites',this)">Favorites</button>
+  <button class="filter" onclick="filterChats('Groups',this)">Groups</button>
+  <button class="filter" onclick="filterChats('Archived',this)">Archived</button>
+ </div>
+ <div id="chatList"></div>
+ <button class="fab" onclick="newChat()">＋</button>
+</section>
+
+<section id="status" class="page">
+ <div class="section-title">STATUS UPDATES</div>
+ <div class="status-card" onclick="addStatus()"><div class="status-ring"><div class="avatar">ME</div></div><div><strong>My status</strong><small>Tap to add a status update</small></div><button class="secondary">＋</button></div>
+ <div class="section-title">RECENT UPDATES</div>
+ <div id="statusList">
+  <div class="status-card"><div class="status-ring"><div class="avatar">AM</div></div><div><strong>Amara</strong><small>Today, 10:25 AM</small></div></div>
+  <div class="status-card"><div class="status-ring"><div class="avatar">JK</div></div><div><strong>James K.</strong><small>Today, 9:40 AM</small></div></div>
+ </div>
+ <div class="panel"><p>Status visibility and audience controls are available in Privacy settings. Demo updates are illustrative.</p></div>
+</section>
+
+<section id="communities" class="page">
+ <div class="section-title">YOUR COMMUNITIES</div>
+ <div class="panel">
+  <h3>🌐 Build your community</h3>
+  <p>Bring groups together around the things that matter.</p>
+  <button class="primary" onclick="createCommunity()">＋ New community</button>
+ </div>
+ <div id="communityList"></div>
+</section>
+
+<section id="calls" class="page">
+ <div class="section-title">CALL HISTORY</div>
+ <div id="callList"></div>
+ <div class="panel"><p>Voice and video calling screens are part of the interface preview. Real calls require a calling service and backend integration.</p></div>
+</section>
+
+<section id="settings" class="page">
+ <div class="profile">
+  <div class="avatar">ME</div><h2 id="profileName">CD NEXA User</h2><p id="profileAbout">Available on CD NEXA</p>
+  <button class="secondary" onclick="editProfile()">Edit profile</button>
+ </div>
+ <div class="panel">
+  <div class="action-row" onclick="openSettings('appearance')"><span class="action-icon">🎨</span><div><strong>Appearance & themes</strong><small>Dark mode, wallpapers, chat colours and fonts</small></div><span class="arrow">›</span></div>
+  <div class="action-row" onclick="openSettings('privacy')"><span class="action-icon">🔒</span><div><strong>Privacy & security</strong><small>Online visibility, read receipts and locked chats</small></div><span class="arrow">›</span></div>
+  <div class="action-row" onclick="openSettings('notifications')"><span class="action-icon">🔔</span><div><strong>Notifications</strong><small>Sounds and alerts</small></div><span class="arrow">›</span></div>
+  <div class="action-row" onclick="openSettings('account')"><span class="action-icon">👤</span><div><strong>Account</strong><small>Profile and account preferences</small></div><span class="arrow">›</span></div>
+  <div class="action-row" onclick="openSettings('storage')"><span class="action-icon">💾</span><div><strong>Storage & data</strong><small>Backup and local data controls</small></div><span class="arrow">›</span></div>
+  <div class="action-row" onclick="openSettings('about')"><span class="action-icon">ⓘ</span><div><strong>About CD NEXA</strong><small>Version and product information</small></div><span class="arrow">›</span></div>
+ </div>
+</section>
+
+<section id="search" class="page">
+ <div class="search-wrap"><input class="search" id="globalSearch" placeholder="Search chats and messages..." oninput="globalSearch()"></div>
+ <div id="searchResults"></div>
+</section>
+</main>
+
+<nav class="bottom-nav">
+ <button class="nav-item active" onclick="showPage('chats',this)"><span>▤</span>Chats</button>
+ <button class="nav-item" onclick="showPage('status',this)"><span>◉</span>Status</button>
+ <button class="nav-item" onclick="showPage('communities',this)"><span>♧</span>Communities</button>
+ <button class="nav-item" onclick="showPage('calls',this)"><span>☎</span>Calls</button>
+ <button class="nav-item" onclick="showPage('settings',this)"><span>⚙</span>Settings</button>
 </nav>
+</div>
 
-<section class="page active" id="page-chats">
-<div class="searchbar" id="searchbar" style="display:none"><input id="search" placeholder="Search conversations..." oninput="renderChats()"></div>
-<div class="filters" id="filters">
-<button class="active" onclick="filterChats('all',this)">All</button>
-<button onclick="filterChats('unread',this)">Unread</button>
-<button onclick="filterChats('favorites',this)">Favorites</button>
-<button onclick="filterChats('groups',this)">Groups</button>
-<button onclick="filterChats('archived',this)">Archived</button>
+<div class="modal" id="modal">
+ <div class="modal-box">
+  <div class="modal-head"><h3 id="modalTitle">CD NEXA</h3><button class="close" onclick="closeModal()">×</button></div>
+  <div id="modalContent"></div>
+ </div>
 </div>
-<div id="chatlist"></div>
-<button class="fab" onclick="newChat()" aria-label="New chat">✎</button>
-</section>
-<section class="page" id="page-status">
-<div class="page-title">Status</div><div class="page-sub">Share moments with your connections.</div>
-<div class="statusrow" onclick="addStatus()"><div class="ring"><div class="avatar">ME</div></div><div class="rowtext"><strong>My status</strong><small>Tap to add an update</small></div><span style="color:var(--accent)">＋</span></div>
-<div class="section-title">RECENT UPDATES</div><div id="statuslist"></div>
-</section>
-<section class="page" id="page-communities">
-<div class="page-title">Communities</div><div class="page-sub">Bring groups together around shared interests.</div>
-<div class="card"><h3>Create a community</h3><p>Organise your groups and connections.</p><br><button class="actionbtn" onclick="createCommunity()">＋ Create community</button></div><div id="communitylist"></div>
-</section>
-<section class="page" id="page-calls">
-<div class="page-title">Calls</div><div class="page-sub">Your voice and video call activity.</div>
-<div class="card"><h3>Voice and video calls</h3><p>Calling will be connected in a later development stage.</p></div>
-<div class="empty">No calls yet.</div>
-</section>
-
-<div class="subpage" id="subpage"><div class="backbar"><button onclick="closeSub()">‹</button><strong id="subTitle">Settings</strong></div><div class="subcontent" id="subContent"></div></div>
-<div class="conversation" id="conversation">
-<div class="chathead"><button onclick="closeChat()">‹</button><div class="avatar" id="chatAvatar">A</div><div class="chatheadcopy"><strong id="chatTitle">Contact</strong><small id="chatSub">Local preview</small></div><button onclick="chatOptions()">⋮</button></div>
-<div class="messages" id="messages"></div>
-<form class="composer" onsubmit="sendMessage(event)"><input id="message" placeholder="Message..." autocomplete="off"><button class="send">➤</button></form>
-</div>
-</div>
-<div class="menu" id="menu">
-<button onclick="openSettings()">⚙ Settings</button>
-<button onclick="newGroup()">👥 New group</button>
-<button onclick="openPrivacy()">◈ Privacy</button>
-<button onclick="openThemes()">◐ Themes</button>
-<button onclick="openProfile()">♙ Profile</button>
-</div>
-<div class="toast" id="toast"></div>
 
 <script>
-const KEY="cdnexa_advanced_chats";
-const seed={name:"My Profile",theme:"dark",filter:"all",contacts:[
-{id:"nexa",name:"NEXA Assistant",initials:"NX",color:"",group:false,pinned:true,favorite:true,unread:0,archived:false,messages:[{text:"Welcome to CD NEXA! Explore your messaging space.",mine:false,time:"09:00"}]},
-{id:"alex",name:"Alex Morgan",initials:"AM",color:"a2",group:false,pinned:false,favorite:false,unread:2,archived:false,messages:[{text:"Hey! Welcome to NEXA 👋",mine:false,time:"Yesterday"}]},
-{id:"family",name:"Family Group",initials:"FG",color:"a3",group:true,pinned:false,favorite:true,unread:3,archived:false,messages:[{text:"Good morning everyone ❤️",mine:false,time:"Yesterday"}]},
-{id:"sarah",name:"Sarah",initials:"S",color:"a4",group:false,pinned:false,favorite:false,unread:0,archived:false,messages:[{text:"Talk to you later!",mine:false,time:"Monday"}]}
-],statuses:[],communities:[],privacy:{hideLastSeen:false,hideReadReceipts:false,hideTyping:false,invisibleStatus:false,lockChats:false}};
-let state=load(),active=null;
-function load(){try{let d=JSON.parse(localStorage.getItem(KEY));if(d&&Array.isArray(d.contacts))return {...seed,...d,privacy:{...seed.privacy,...d.privacy}}}catch(e){}return JSON.parse(JSON.stringify(seed))}
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function ini(n){return n.trim().split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase()}
-function toast(t){let e=document.getElementById("toast");e.textContent=t;e.style.display="block";clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>e.style.display="none",2400)}
-function applyTheme(){document.body.classList.toggle("light",state.theme==="light")}
-function tab(name){document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("active",x.id==="tab-"+name));document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById("page-"+name).classList.add("active");document.getElementById("menu").classList.remove("open");if(name==="chats")renderChats();if(name==="status")renderStatuses();if(name==="communities")renderCommunities()}
-function filterChats(f,b){state.filter=f;document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderChats()}
+const $=id=>document.getElementById(id);
+let chats=JSON.parse(localStorage.getItem('nexa_chats')||'null')||[
+ {id:1,name:'Amara',initials:'AM',message:'See you soon!',time:'10:42',unread:2,online:true,favorite:true,group:false,messages:[{text:'Hey! How are you?',mine:false,time:'10:35'},{text:'I am good. How about you?',mine:true,time:'10:39'},{text:'See you soon!',mine:false,time:'10:42'}]},
+ {id:2,name:'James K.',initials:'JK',message:'That sounds great.',time:'09:18',unread:0,online:true,favorite:false,group:false,messages:[{text:'That sounds great.',mine:false,time:'09:18'}]},
+ {id:3,name:'Family Group',initials:'FG',message:'Mum: Thank you everyone',time:'Yesterday',unread:4,online:false,favorite:true,group:true,messages:[{text:'Mum: Thank you everyone',mine:false,time:'Yesterday'}]},
+ {id:4,name:'Brian',initials:'BR',message:'Photo received',time:'Yesterday',unread:0,online:false,favorite:false,group:false,messages:[{text:'Photo received',mine:false,time:'Yesterday'}]},
+ {id:5,name:'Tech Community',initials:'TC',message:'Welcome members',time:'Monday',unread:0,online:false,favorite:false,group:true,messages:[{text:'Welcome members',mine:false,time:'Monday'}]}
+];
+let activeFilter='All',activeChat=null;
+function save(){localStorage.setItem('nexa_chats',JSON.stringify(chats))}
 function renderChats(){
- let q=(document.getElementById("search").value||"").toLowerCase(),f=state.filter;
- let arr=state.contacts.filter(c=>c.name.toLowerCase().includes(q));
- if(f==="unread")arr=arr.filter(c=>c.unread>0&&!c.archived);
- if(f==="favorites")arr=arr.filter(c=>c.favorite&&!c.archived);
- if(f==="groups")arr=arr.filter(c=>c.group&&!c.archived);
- if(f==="archived")arr=arr.filter(c=>c.archived);
- if(f==="all")arr=arr.filter(c=>!c.archived);
- arr.sort((a,b)=>Number(!!b.pinned)-Number(!!a.pinned));
- document.getElementById("chatlist").innerHTML=arr.map(c=>{
- let last=c.messages[c.messages.length-1];
- return `<div class="chatrow ${c.unread?"unread":""}" onclick="openChat('${c.id}')">
- <div class="avatar ${c.color}">${esc(c.initials)}</div><div class="chatdetails">
- <div class="chatline"><span class="chatname">${c.pinned?"📌 ":""}${c.favorite?"★ ":""}${esc(c.name)}</span><span class="time">${esc(last?.time||"")}</span></div>
- <div class="preview">${c.group?"👥 ":""}${last?(last.mine?"You: ":"")+esc(last.text):"Start a conversation"}</div></div>
- <div class="chat-right">${c.unread?`<span class="count">${c.unread}</span>`:""}<span class="marks">${c.archived?"ARCHIVED":""}</span></div></div>`;
- }).join("")||'<div class="empty">Nothing here yet.</div>';
+ let q=($('chatSearch')?.value||'').toLowerCase();
+ let list=chats.filter(c=>{
+  if(activeFilter==='Unread'&&!c.unread)return false;
+  if(activeFilter==='Favorites'&&!c.favorite)return false;
+  if(activeFilter==='Groups'&&!c.group)return false;
+  if(activeFilter==='Archived'&&!c.archived)return false;
+  if(activeFilter!=='Archived'&&c.archived)return false;
+  return c.name.toLowerCase().includes(q)||c.message.toLowerCase().includes(q);
+ });
+ $('chatList').innerHTML=list.length?list.map(c=>`
+ <div class="chat-row" onclick="openChat(${c.id})">
+  <div class="avatar">${escapeHTML(c.initials)}${c.online?'<i class="online"></i>':''}</div>
+  <div class="chat-info"><div class="chat-top"><span class="chat-name">${escapeHTML(c.name)} ${c.favorite?'★':''}</span><span class="time">${c.time}</span></div>
+  <div class="chat-bottom"><span class="preview">${escapeHTML(c.message)}</span>${c.unread?`<span class="unread">${c.unread}</span>`:''}</div></div>
+ </div>`).join(''):'<div class="empty">No conversations found.</div>';
 }
-function toggleSearch(){tab("chats");let e=document.getElementById("searchbar");e.style.display=e.style.display==="none"?"block":"none";if(e.style.display==="block")document.getElementById("search").focus()}
-function toggleMenu(){document.getElementById("menu").classList.toggle("open")}
-function newChat(){
- let n=prompt("Enter the contact's name:");if(!n||!n.trim())return;n=n.trim();
- if(state.contacts.some(c=>c.name.toLowerCase()===n.toLowerCase()))return toast("Contact already exists.");
- let c={id:"c"+Date.now(),name:n,initials:ini(n),color:"a5",group:false,pinned:false,favorite:false,unread:0,archived:false,messages:[]};
- state.contacts.unshift(c);save();tab("chats");filterReset();openChat(c.id);
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function filterChats(f,el){activeFilter=f;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));if(el)el.classList.add('active');renderChats()}
+function showPage(id,el){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ $(id)?.classList.add('active');
+ document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+ if(el)el.classList.add('active');
+ else document.querySelectorAll('.nav-item').forEach(n=>{if(n.textContent.toLowerCase().includes(id==='chats'?'chats':id))n.classList.add('active')});
 }
-function filterReset(){state.filter="all";document.querySelectorAll(".filters button").forEach((b,i)=>b.classList.toggle("active",i===0))}
-function newGroup(){
- let n=prompt("Enter a group name:");if(!n||!n.trim())return;
- let members=prompt("Enter member names separated by commas (optional):")||"";
- let c={id:"g"+Date.now(),name:n.trim(),initials:ini(n),color:"a3",group:true,members:members.split(",").map(x=>x.trim()).filter(Boolean),pinned:false,favorite:false,unread:0,archived:false,messages:[{text:"Group created. Add a message to begin.",mine:false,time:"Now"}]};
- state.contacts.unshift(c);save();tab("chats");filterReset();openChat(c.id);toast("Group created in this local preview.");
-}
+function openModal(title,content){$('modalTitle').textContent=title;$('modalContent').innerHTML=content;$('modal').classList.add('open')}
+function closeModal(){$('modal').classList.remove('open')}
 function openChat(id){
- active=state.contacts.find(c=>c.id===id);if(!active)return;
- active.unread=0;save();document.getElementById("conversation").classList.add("open");
- document.getElementById("chatTitle").textContent=active.name;
- document.getElementById("chatAvatar").textContent=active.initials;
- document.getElementById("chatAvatar").className="avatar "+active.color;
- document.getElementById("chatSub").textContent=active.group?"Group conversation • Local preview":"Local preview conversation";
- renderMessages();renderChats();
+ activeChat=chats.find(c=>c.id===id);activeChat.unread=0;save();renderChats();
+ openModal(activeChat.name,`<div class="chat-window"><div class="messages" id="messages">${activeChat.messages.map(m=>`<div class="msg ${m.mine?'mine':''}">${escapeHTML(m.text)}<small>${m.time} ${m.mine?'✓✓':''}</small></div>`).join('')}</div><div class="composer"><input id="messageInput" placeholder="Message..." onkeydown="if(event.key==='Enter')sendMessage()"><button class="send" onclick="sendMessage()">➤</button></div><div style="display:flex;gap:8px;margin-top:10px"><button class="secondary" onclick="chatAction('reply')">↩ Reply</button><button class="secondary" onclick="chatAction('favorite')">★ Favorite</button><button class="secondary" onclick="chatAction('delete')">Delete</button></div></div>`);
+ $('messages').scrollTop=$('messages').scrollHeight;
 }
-function closeChat(){document.getElementById("conversation").classList.remove("open");active=null;renderChats()}
-function renderMessages(){document.getElementById("messages").innerHTML='<div style="text-align:center;color:var(--muted);font-size:10px;margin:5px">CD NEXA • LOCAL PREVIEW</div>'+active.messages.map(m=>`<div class="msg ${m.mine?"mine":""}">${esc(m.text)}<small>${esc(m.time||"")}</small></div>`).join("");let e=document.getElementById("messages");e.scrollTop=e.scrollHeight}
-function sendMessage(e){e.preventDefault();let i=document.getElementById("message"),t=i.value.trim();if(!t||!active)return;active.messages.push({text:t,mine:true,time:new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})});save();i.value="";renderMessages();renderChats()}
-function chatOptions(){
- let choice=prompt("Manage "+active.name+":\n1 Pin / unpin\n2 Add / remove favourite\n3 Mark unread\n4 Archive / unarchive\n5 Rename\n6 Delete chat\n7 Cancel");
- if(choice==="1"){active.pinned=!active.pinned;toast(active.pinned?"Chat pinned":"Chat unpinned")}
- else if(choice==="2"){active.favorite=!active.favorite;toast(active.favorite?"Added to favourites":"Removed from favourites")}
- else if(choice==="3"){active.unread=1;closeChat();toast("Marked unread")}
- else if(choice==="4"){active.archived=!active.archived;toast(active.archived?"Chat archived":"Chat restored");closeChat()}
- else if(choice==="5"){let n=prompt("New name:",active.name);if(n&&n.trim()){active.name=n.trim();active.initials=ini(n);document.getElementById("chatTitle").textContent=active.name}}
- else if(choice==="6"&&confirm("Delete this conversation from this device?")){state.contacts=state.contacts.filter(c=>c.id!==active.id);closeChat();toast("Chat deleted")}
- save();renderChats();
+function sendMessage(){
+ let input=$('messageInput'),text=input.value.trim();if(!text||!activeChat)return;
+ let time=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+ activeChat.messages.push({text,mine:true,time});activeChat.message=text;activeChat.time=time;save();
+ $('messages').insertAdjacentHTML('beforeend',`<div class="msg mine">${escapeHTML(text)}<small>${time} ✓</small></div>`);
+ input.value='';$('messages').scrollTop=$('messages').scrollHeight;renderChats();
 }
-function renderStatuses(){document.getElementById("statuslist").innerHTML=state.statuses.map(s=>`<div class="statusrow" onclick="viewStatus('${s.id}')"><div class="ring"><div class="avatar a2">${esc(s.initials)}</div></div><div class="rowtext"><strong>${esc(s.owner)}</strong><small>${esc(s.text)}</small></div></div>`).join("")||'<div class="empty">No recent updates.</div>'}
-function addStatus(){let t=prompt("Write your status:");if(!t||!t.trim())return;state.statuses.unshift({id:"s"+Date.now(),owner:state.name,initials:ini(state.name),text:t.trim(),mine:true});save();renderStatuses();toast("Status saved locally.")}
-function viewStatus(id){let s=state.statuses.find(x=>x.id===id);if(s)alert(s.owner+":\n\n"+s.text)}
-function createCommunity(){let n=prompt("Community name:");if(!n||!n.trim())return;state.communities.push(n.trim());save();renderCommunities()}
-function renderCommunities(){document.getElementById("communitylist").innerHTML=state.communities.map(n=>`<div class="settingrow"><div class="settingicon">♧</div><div class="settingcopy"><strong>${esc(n)}</strong><small>Local preview community</small></div></div>`).join("")||'<div class="empty">No communities created yet.</div>'}
-function sub(title,html){document.getElementById("menu").classList.remove("open");document.getElementById("subTitle").textContent=title;document.getElementById("subContent").innerHTML=html;document.getElementById("subpage").classList.add("open")}
-function closeSub(){document.getElementById("subpage").classList.remove("open")}
-function openSettings(){sub("Settings",`
-<div class="page-title">Settings</div><div class="page-sub">Personalise your NEXA experience.</div>
-${setting("♙","Profile","Manage your display name","openProfile()")}
-${setting("◈","Privacy","Online visibility and privacy controls","openPrivacy()")}
-${setting("◐","Themes","Appearance and colours","openThemes()")}
-${setting("▣","Chat settings","Conversation preferences","openChatSettings()")}
-${setting("♧","Storage and backup","Export or reset local data","openData()")}
-<div class="card"><h3>CD NEXA • Interface preview</h3><p>Online accounts, real-time messaging, secure encryption and calls are not connected yet.</p></div>`)}
-function setting(ic,t,d,fn){return `<div class="settingrow" onclick="${fn}"><div class="settingicon">${ic}</div><div class="settingcopy"><strong>${t}</strong><small>${d}</small></div><span>›</span></div>`}
-function openProfile(){sub("Profile",`<div class="card"><h3>Display name</h3><input id="pname" value="${esc(state.name)}" style="width:100%;padding:12px;background:var(--surface2);color:var(--text);border:1px solid var(--line);border-radius:9px"><br><br><button class="actionbtn" onclick="saveProfile()">Save</button></div>`)}
-function saveProfile(){let n=document.getElementById("pname").value.trim();if(!n)return toast("Enter a name");state.name=n;save();openProfile();toast("Profile saved")}
-function openPrivacy(){sub("Privacy centre",`<div class="page-title">Privacy controls</div>${privacyRow("Hide last seen","hideLastSeen")}${privacyRow("Hide read receipts","hideReadReceipts")}${privacyRow("Hide typing indicator","hideTyping")}${privacyRow("Invisible status viewing","invisibleStatus")}${privacyRow("Private chat lock","lockChats")}<div class="card"><p>These are saved preview preferences. They do not yet enforce privacy across other users or devices.</p></div>`)}
-function privacyRow(label,key){return `<div class="settingrow"><div class="settingicon">◈</div><div class="settingcopy"><strong>${label}</strong></div><button class="switch ${state.privacy[key]?"on":""}" id="sw-${key}" onclick="togglePrivacy('${key}')"></button></div>`}
-function togglePrivacy(k){state.privacy[k]=!state.privacy[k];save();document.getElementById("sw-"+k).classList.toggle("on",state.privacy[k])}
-function openThemes(){sub("Themes",`<div class="page-title">Appearance studio</div><div class="page-sub">Choose your interface.</div><div class="card"><button class="actionbtn" onclick="chooseTheme('dark')">Obsidian dark</button> <button class="actionbtn" onclick="chooseTheme('light')">Pure light</button><p style="margin-top:12px">More colours, wallpapers, fonts and per-chat themes will be added in the customization stage.</p></div>`)}
-function chooseTheme(t){state.theme=t;save();applyTheme();openThemes();toast("Theme updated")}
-function openChatSettings(){sub("Chat settings",`<div class="page-title">Conversation settings</div><div class="card"><h3>Chat management</h3><p>Pin, favourite, mark unread, archive, rename and delete chats using the chat menu.</p></div><div class="card"><h3>Coming in the next build</h3><p>Custom wallpapers, message reactions, reply threads, editing, per-contact themes and voice messages.</p></div>`)}
-function openData(){sub("Storage and backup",`<div class="card"><h3>Export local backup</h3><p>Download your preview contacts and messages.</p><br><button class="actionbtn" onclick="backup()">Export backup</button></div><div class="card"><h3>Reset preview</h3><p>Remove saved local preview information.</p><br><button class="actionbtn" onclick="resetData()">Reset data</button></div>`)}
-function backup(){let b=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="cd-nexa-backup.json";a.click();URL.revokeObjectURL(u)}
-function resetData(){if(!confirm("Reset all local preview data?"))return;state=JSON.parse(JSON.stringify(seed));save();applyTheme();closeSub();filterReset();renderChats();toast("Preview reset")}
-document.addEventListener("click",e=>{if(!e.target.closest(".topbar")&&!e.target.closest(".menu"))document.getElementById("menu").classList.remove("open")});
-applyTheme();renderChats();
+function chatAction(action){
+ if(!activeChat)return;
+ if(action==='favorite'){activeChat.favorite=!activeChat.favorite;save();renderChats();closeModal();return}
+ if(action==='delete'){if(confirm('Delete this local conversation?')){chats=chats.filter(c=>c.id!==activeChat.id);save();renderChats();closeModal()}return}
+ alert(action==='reply'?'Select a message in this preview to reply.':'Action unavailable in this preview.');
+}
+function newChat(){
+ openModal('Start a conversation',`<label>Contact name</label><input class="field" id="newName" placeholder="Enter contact name"><button class="primary" onclick="createChat()">Create chat</button>`);
+}
+function createChat(){
+ let name=$('newName').value.trim();if(!name)return;
+ chats.unshift({id:Date.now(),name,initials:name.slice(0,2).toUpperCase(),message:'New conversation',time:'Now',unread:0,online:false,favorite:false,group:false,messages:[]});
+ save();renderChats();closeModal();
+}
+function addStatus(){
+ openModal('Add status',`<textarea class="field" id="statusText" placeholder="What's on your mind?" rows="4"></textarea><button class="primary" onclick="publishStatus()">Share status</button>`);
+}
+function publishStatus(){
+ let t=$('statusText').value.trim();if(!t)return;
+ $('statusList').insertAdjacentHTML('afterbegin',`<div class="status-card"><div class="status-ring"><div class="avatar">ME</div></div><div><strong>My status</strong><small>${escapeHTML(t)}</small></div></div>`);
+ closeModal();
+}
+function createCommunity(){
+ openModal('Create community',`<input class="field" id="communityName" placeholder="Community name"><textarea class="field" id="communityAbout" placeholder="Describe your community"></textarea><button class="primary" onclick="publishCommunity()">Create community</button>`);
+}
+function publishCommunity(){
+ let n=$('communityName').value.trim(),a=$('communityAbout').value.trim();if(!n)return;
+ $('communityList').insertAdjacentHTML('beforeend',`<div class="panel"><h3>🌐 ${escapeHTML(n)}</h3><p>${escapeHTML(a)}</p></div>`);closeModal();
+}
+function editProfile(){
+ openModal('Edit profile',`<label>Your name</label><input class="field" id="editName" value="${escapeHTML($('profileName').textContent)}"><label>About</label><input class="field" id="editAbout" value="${escapeHTML($('profileAbout').textContent)}"><button class="primary" onclick="saveProfile()">Save profile</button>`);
+}
+function saveProfile(){$('profileName').textContent=$('editName').value;$('profileAbout').textContent=$('editAbout').value;closeModal()}
+function openSettings(type){
+ const pages={
+ appearance:`<h3>Appearance & themes</h3><label>Theme</label><select class="field" onchange="setTheme(this.value)"><option value="dark">Nexa Dark</option><option value="amoled">AMOLED Black</option><option value="light">Light</option></select><label>Accent colour</label><div class="theme-options"><button class="swatch" style="background:#16c79a" onclick="setAccent('#16c79a')"></button><button class="swatch" style="background:#3988ff" onclick="setAccent('#3988ff')"></button><button class="swatch" style="background:#a46bff" onclick="setAccent('#a46bff')"></button><button class="swatch" style="background:#f08b45" onclick="setAccent('#f08b45')"></button><button class="swatch" style="background:#ed5d9b" onclick="setAccent('#ed5d9b')"></button></div><label>Message text size</label><select class="field" onchange="document.querySelectorAll('.msg').forEach(x=>x.style.fontSize=this.value)"><option value="12px">Small</option><option value="13px" selected>Normal</option><option value="16px">Large</option><option value="18px">Extra large</option></select><label>Chat wallpaper</label><input type="color" class="field" onchange="document.documentElement.style.setProperty('--bg',this.value)"><button class="secondary" onclick="setBubble('#164c40')">Default bubbles</button> <button class="secondary" onclick="setBubble('#25466b')">Blue bubbles</button>`,
+ privacy:`<h3>Privacy & security</h3>${toggle('Show online status','online')}${toggle('Read receipts','receipts')}${toggle('Typing indicators','typing')}${toggle('Show last seen','lastseen')}${toggle('Private notifications','private') }<p>These switches change this device's preview preferences only. Real privacy enforcement requires server-side implementation.</p>`,
+ notifications:`<h3>Notifications</h3>${toggle('Message notifications','msgnotify')}${toggle('Group notifications','groupnotify')}${toggle('Call notifications','callnotify')}<label>Notification sound</label><select class="field"><option>Nexa Pulse</option><option>Classic Tone</option><option>Soft Chime</option><option>Silent</option></select><button class="secondary" onclick="alert('Sound preview is not connected yet.')">Preview sound</button>`,
+ account:`<h3>Account settings</h3><p>Manage your profile and account preferences.</p><button class="secondary" onclick="editProfile()">Edit profile</button><p>Account registration and multi-device sync will be connected in the backend phase.</p>`,
+ storage:`<h3>Storage & data</h3><p>Save a local copy of your demo conversations.</p><button class="primary" onclick="backup()">Export local backup</button><p><button class="secondary" onclick="if(confirm('Clear local demo conversations?')){localStorage.removeItem('nexa_chats');location.reload()}">Reset demo data</button></p>`,
+ about:`<h3>CD NEXA</h3><p>Connect Beyond Limits.</p><p>Interface preview · Version 1.0</p><p>Built for simple, private and connected conversations.</p><p>Real-time messaging, accounts, encrypted communication, media delivery and calls are not connected yet.</p>`
+ };
+ openModal('Settings',pages[type]||'');
+}
+function toggle(label,key){return `<div class="action-row"><div style="flex:1"><strong>${label}</strong></div><input class="switch" type="checkbox" checked onchange="localStorage.setItem('nexa_${key}',this.checked)"></div>`}
+function setTheme(v){
+ if(v==='amoled'){document.documentElement.style.setProperty('--bg','#000');document.documentElement.style.setProperty('--panel','#050505');document.documentElement.style.setProperty('--card','#101010')}
+ else if(v==='light'){document.documentElement.style.setProperty('--bg','#f2f6f5');document.documentElement.style.setProperty('--panel','#fff');document.documentElement.style.setProperty('--card','#e6efec');document.documentElement.style.setProperty('--text','#10251f');document.documentElement.style.setProperty('--muted','#637a72')}
+ else{document.documentElement.style.setProperty('--bg','#071b19');document.documentElement.style.setProperty('--panel','#0d2522');document.documentElement.style.setProperty('--card','#112e2a');document.documentElement.style.setProperty('--text','#effaf6');document.documentElement.style.setProperty('--muted','#91aaa2')}
+ localStorage.setItem('nexa_theme',v);
+}
+function setAccent(v){document.documentElement.style.setProperty('--accent',v);localStorage.setItem('nexa_accent',v)}
+function setBubble(v){document.documentElement.style.setProperty('--bubble',v);localStorage.setItem('nexa_bubble',v)}
+function backup(){
+ let data={chats,exportedAt:new Date().toISOString()};
+ let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='cd-nexa-backup.json';a.click();URL.revokeObjectURL(url);
+}
+function globalSearch(){
+ let q=$('globalSearch').value.toLowerCase();
+ let found=chats.filter(c=>c.name.toLowerCase().includes(q)||c.messages.some(m=>m.text.toLowerCase().includes(q)));
+ $('searchResults').innerHTML=found.map(c=>`<div class="chat-row" onclick="showPage('chats');openChat(${c.id})"><div class="avatar">${escapeHTML(c.initials)}</div><div><strong>${escapeHTML(c.name)}</strong><div class="preview">${escapeHTML(c.message)}</div></div></div>`).join('')||'<div class="empty">No results.</div>';
+}
+function loadCalls(){
+ $('callList').innerHTML=`<div class="chat-row"><div class="avatar">AM</div><div class="chat-info"><strong>Amara</strong><div class="preview">↗ Outgoing voice call · Yesterday</div></div><button class="icon-btn" onclick="alert('Calling requires backend integration.')">☎</button></div><div class="chat-row"><div class="avatar">JK</div><div class="chat-info"><strong>James K.</strong><div class="preview">◉ Video call · Monday</div></div><button class="icon-btn" onclick="alert('Calling requires backend integration.')">◉</button></div>`;
+}
+function restorePrefs(){
+ let theme=localStorage.getItem('nexa_theme'),accent=localStorage.getItem('nexa_accent'),bubble=localStorage.getItem('nexa_bubble');
+ if(theme)setTheme(theme);if(accent)setAccent(accent);if(bubble)setBubble(bubble);
+}
+restorePrefs();renderChats();loadCalls();
 </script>
 </body>
 </html>
